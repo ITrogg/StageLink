@@ -3,6 +3,7 @@ const tables = require("../../database/tables");
 
 const read = async (req, res, next) => {
   const { email, password } = req.body;
+
   try {
     const user = await tables.User.readByEmail(email);
 
