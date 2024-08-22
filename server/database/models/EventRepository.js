@@ -5,6 +5,28 @@ class EventRepository extends AbstractRepository {
     super({ table: "Event" });
   }
 
+  async create(event) {
+    const [result] = await this.database.query(
+      `INSERT INTO ${this.table} (title, description, start_date, end_date, start_time,location_id, created_by, poster_image, price_prevent, price_at_door, facebook_link, ticket_link, is_free) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      [
+        event.title,
+        event.description,
+        event.start_date,
+        event.end_date,
+        event.start_time,
+        event.location_id,
+        event.created_by,
+        event.poster_image,
+        event.price_prevent,
+        event.price_at_door,
+        event.facebook_link,
+        event.ticket_link,
+        event.is_free,
+      ]
+    );
+    return result.insertId;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(`
       SELECT 

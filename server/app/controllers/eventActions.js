@@ -48,11 +48,21 @@ const read = async (req, res, next) => {
   }
 };
 
+const add = async (req, res, next) => {
+  try {
+    const event = req.body;
+    const newEvent = await tables.Event.create(event);
+    res.status(200).json(newEvent);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
   // edit,
-  // add,
+  add,
   // destroy,
 };
