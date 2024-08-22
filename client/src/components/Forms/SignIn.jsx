@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
 import InputElement from "../UI/Input";
 
 import connexion from "../../services/connexion";
 
-function Inscription() {
-  const navigate = useNavigate();
+function Inscription({ setMessage, setForm }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,7 +20,10 @@ function Inscription() {
     } else {
       try {
         await connexion.post("api/user", { email, username, password });
-        navigate("/connexion");
+        setMessage(
+          "Inscription effective, connectez vous pour accèder au site"
+        );
+        setForm(false);
       } catch (err) {
         setError("Erreur d'inscription. Veuillez réessayer.");
       }
@@ -65,5 +67,10 @@ function Inscription() {
     </Container>
   );
 }
+
+Inscription.propTypes = {
+  setMessage: PropTypes.func.isRequired,
+  setForm: PropTypes.func.isRequired,
+};
 
 export default Inscription;

@@ -7,7 +7,8 @@ import Inscription from "../components/Forms/SignIn";
 import backgroundImage from "../assets/images/background.jpg";
 
 function Welcome() {
-  const [newUser, setnewUser] = useState(false);
+  const [newUser, setNewUser] = useState(false);
+  const [messageInscription, setMessageInscription] = useState(null);
 
   return (
     <Flex
@@ -40,13 +41,21 @@ function Welcome() {
         minH="60vh"
         flex="1"
       >
-        {newUser ? <Inscription /> : <Connection />}
+        <Text>{messageInscription}</Text>
+        {newUser ? (
+          <Inscription
+            setMessage={setMessageInscription}
+            setForm={setNewUser}
+          />
+        ) : (
+          <Connection />
+        )}
         <Text
           as="button"
           fontSize="lg"
           color="red.800"
           display="block"
-          onClick={() => setnewUser(!newUser)}
+          onClick={() => setNewUser(!newUser)}
         >
           {newUser ? "Déjà inscrit·e ?" : "Pas encore de compte ?"}
         </Text>
