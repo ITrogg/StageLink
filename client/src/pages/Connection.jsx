@@ -22,8 +22,15 @@ function Connection() {
 
     try {
       const res = await connexion.post("api/user/login", { email, password });
-      localStorage.setItem("authToken", res.data.token);
-      navigate("/");
+
+      if (res.data.token) {
+        localStorage.setItem("authToken", res.data.token);
+        navigate("/");
+      } else {
+        setError(
+          "Erreur de connexion. Veuillez réessyer quand j'aurai fini le site"
+        );
+      }
     } catch (err) {
       setError("Erreur de connexion. Veuillez réessayer.");
     }
