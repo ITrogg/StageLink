@@ -17,6 +17,10 @@ const eventsRouter = require("./event/router");
 
 router.use("/event", eventsRouter);
 
+const genreTagsRouter = require("./genreTag/router");
+
+router.use("/genreTag", genreTagsRouter);
+
 const locationsRouter = require("./location/router");
 
 router.use("/location", locationsRouter);
