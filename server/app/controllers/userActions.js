@@ -1,5 +1,8 @@
+const jwt = require("jsonwebtoken");
 // Import access to database tables
 const tables = require("../../database/tables");
+
+require("dotenv").config();
 
 const read = async (req, res, next) => {
   const { email, password } = req.body;
@@ -14,13 +17,23 @@ const read = async (req, res, next) => {
     if (user.password !== password) {
       res.status(401).json({ message: "Mot de passe incorrect" });
     }
-    res.status(200).json({ message: "connexion reussi", user });
+
+    const payload = {
+      id: user.id,
+      email: user.email,
+      username: user.username,
+    };
+
+    const token = jwt.sign(payload, process.env.JWT.SECRET, {
+      expiresIn: "2h",
+    });
+
+    res.status(200).json({ message: "connexion reussi", token });
   } catch (err) {
     next(err);
   }
 };
 
-// Ajout
 const add = async (req, res, next) => {
   const user = req.body;
   try {
