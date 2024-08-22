@@ -5,6 +5,14 @@ class ArtistRepository extends AbstractRepository {
     super({ table: "Artist" });
   }
 
+  async create(artist) {
+    const [result] = await this.database.query(
+      `INSERT INTO ${this.table} (name, country_id, genre) VALUES (?,?,?)`,
+      [artist.name, artist.country_id, artist.genre]
+    );
+    return result.insertId;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(
       `SELECT 

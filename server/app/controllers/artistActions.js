@@ -29,11 +29,21 @@ const read = async (req, res, next) => {
   }
 };
 
+const add = async (req, res, next) => {
+  try {
+    const artist = req.body;
+    const newArtist = await tables.Artist.create(artist);
+    res.status(201).json(newArtist);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
   // edit,
-  // add,
+  add,
   // destroy,
 };
