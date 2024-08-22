@@ -1,7 +1,7 @@
 CREATE TABLE `User` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL UNIQUE,
+  `email` varchar(255) NOT NULL UNIQUE,
   `password` varchar(255) NOT NULL,
   `profile_image` varchar(255) NOT NULL DEFAULT 'default_profile_image_url',
   `preferred_streaming_platform` ENUM ('Spotify', 'Deezer', 'YouTube', 'Bandcamp', 'AppleMusic', 'AmazonMusic') NOT NULL DEFAULT 'YouTube',

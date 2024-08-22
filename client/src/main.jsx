@@ -4,12 +4,24 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 
+import Welcome from "./pages/Welcome";
 import App from "./App";
+import ConnectedLayout from "./pages/layout/ConnectedLayout";
 
 const router = createBrowserRouter([
   {
+    path: "/welcome",
+    element: <Welcome />,
+  },
+  {
     path: "/",
-    element: <App />,
+    element: <ConnectedLayout />,
+    children: [
+      {
+        path: "",
+        element: <App />,
+      },
+    ],
   },
 ]);
 
