@@ -1,7 +1,8 @@
 // Import the repository modules responsible for handling data operations on the tables
-const UserRepository = require("./models/UserRepository");
 const ArtistRepository = require("./models/ArtistRepository");
 const EventRepository = require("./models/EventRepository");
+const LocationRepository = require("./models/LocationRepository");
+const UserRepository = require("./models/UserRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -11,9 +12,10 @@ const tables = {};
 /* ************************************************************************* */
 
 // Register each repository as data access point for its table
-tables.User = new UserRepository();
 tables.Artist = new ArtistRepository();
 tables.Event = new EventRepository();
+tables.Location = new LocationRepository();
+tables.User = new UserRepository();
 
 /* ************************************************************************* */
 

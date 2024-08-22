@@ -7,7 +7,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, read } = require("../../../controllers/eventActions");
+const { browse, read } = require("../../../controllers/locationActions");
 
 router.get("/", browse);
 router.get("/:id", read);

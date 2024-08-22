@@ -23,6 +23,22 @@ class ArtistRepository extends AbstractRepository {
     return rows;
   }
 
+  async readbyEvent(eventId) {
+    const [rows] = await this.database.query(
+      `SELECT
+        a.id,
+        a.name
+      FROM 
+        ${this.table} a
+      JOIN 
+        Event_Artist ea ON a.id = ea.artist_id
+      WHERE 
+        ea.event_id = ?`,
+      [eventId]
+    );
+    return rows;
+  }
+
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT

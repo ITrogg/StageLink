@@ -2,15 +2,9 @@
 const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
-  const { type, eventId } = req.query;
   try {
-    if (type === "byEvent") {
-      const artists = await tables.Artist.readbyEvent(eventId);
-      res.status(200).json(artists);
-    } else {
-      const artists = await tables.Artist.readAll();
-      res.status(200).json(artists);
-    }
+    const locations = await tables.Location.readAll();
+    res.status(200).json(locations);
   } catch (err) {
     next(err);
   }
@@ -18,11 +12,11 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const artist = await tables.Artist.read(req.params.id);
-    if (artist == null) {
+    const location = await tables.Location.read(req.params.id);
+    if (location == null) {
       res.sendStatus(404);
     } else {
-      res.status(200).json(artist);
+      res.status(200).json(location);
     }
   } catch (err) {
     next(err);

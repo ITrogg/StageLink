@@ -1,5 +1,5 @@
 function DetailLocation() {
-  <p>DetailLocation</p>;
+  return <p>DetailLocation</p>;
 }
 
 export default DetailLocation;
