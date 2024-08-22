@@ -23,11 +23,21 @@ const read = async (req, res, next) => {
   }
 };
 
+const add = async (req, res, next) => {
+  try {
+    const location = req.body;
+    const newLocation = await tables.Location.create(location);
+    res.status(201).json(newLocation);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
   // edit,
-  // add,
+  add,
   // destroy,
 };

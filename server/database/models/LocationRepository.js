@@ -5,6 +5,23 @@ class LocationRepository extends AbstractRepository {
     super({ table: "Location" });
   }
 
+  async create(location) {
+    const [result] = await this.database.query(
+      `INSERT INTO ${this.table} (name, address, city, state, country_id, postal_code, latitude, longitude) VALUES (?,?,?,?,?,?,?,?)`,
+      [
+        location.name,
+        location.addresse,
+        location.city,
+        location.state,
+        location.country_id,
+        location.postal_code,
+        location.latitude,
+        location.longitude,
+      ]
+    );
+    return result.insertId;
+  }
+
   async readAll() {
     const [rows] = await this.database.query(
       `SELECT 
