@@ -1,5 +1,6 @@
 // Import the repository modules responsible for handling data operations on the tables
 const ArtistRepository = require("./models/ArtistRepository");
+const ArtistGenreTagRepository = require("./models/ArtistGenreTagRepository");
 const CountryRepository = require("./models/CountryRepository");
 const EventRepository = require("./models/EventRepository");
 const GenreTagRepository = require("./models/GenreTagRepository");
@@ -15,6 +16,7 @@ const tables = {};
 
 // Register each repository as data access point for its table
 tables.Artist = new ArtistRepository();
+tables.ArtistGenreTag = new ArtistGenreTagRepository();
 tables.Country = new CountryRepository();
 tables.Event = new EventRepository();
 tables.GenreTag = new GenreTagRepository();

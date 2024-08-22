@@ -3,8 +3,14 @@ const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
   try {
-    const genreTags = await tables.GenreTag.readAll();
-    res.status(200).json(genreTags);
+    const { type, artistId } = req.query;
+    if (type === "byArtist") {
+      const genreTags = await tables.GenreTag.readByArtist(artistId);
+      res.status(200).json(genreTags);
+    } else {
+      const genreTags = await tables.GenreTag.readAll();
+      res.status(200).json(genreTags);
+    }
   } catch (err) {
     next(err);
   }

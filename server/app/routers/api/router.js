@@ -9,6 +9,10 @@ const artistsRouter = require("./artist/router");
 
 router.use("/artist", artistsRouter);
 
+const artistGenreTagsRouter = require("./artistGenreTag/router");
+
+router.use("/artistGenreTag", artistGenreTagsRouter);
+
 const countriesRouter = require("./country/router");
 
 router.use("/country", countriesRouter);
