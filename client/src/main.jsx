@@ -4,19 +4,14 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 
-import Connection from "./pages/Connection";
-import SignIn from "./pages/SignIn";
+import Welcome from "./pages/Welcome";
 import App from "./App";
 import ConnectedLayout from "./pages/layout/ConnectedLayout";
 
 const router = createBrowserRouter([
   {
-    path: "/connexion",
-    element: <Connection />,
-  },
-  {
-    path: "/inscription",
-    element: <SignIn />,
+    path: "/welcome",
+    element: <Welcome />,
   },
   {
     path: "/",

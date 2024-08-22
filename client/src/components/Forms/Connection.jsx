@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Text,
-} from "@chakra-ui/react";
+import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
-import connexion from "../services/connexion";
+import connexion from "../../services/connexion";
+import InputElement from "../UI/Input";
 
 function Connection() {
   const navigate = useNavigate();
@@ -27,9 +21,7 @@ function Connection() {
         localStorage.setItem("authToken", res.data.token);
         navigate("/");
       } else {
-        setError(
-          "Erreur de connexion. Veuillez réessyer quand j'aurai fini le site"
-        );
+        setError("Erreur de connexion. Veuillez réessayer");
       }
     } catch (err) {
       setError("Erreur de connexion. Veuillez réessayer.");
@@ -37,30 +29,31 @@ function Connection() {
   };
 
   return (
-    <Box p={5}>
+    <Container p={5}>
       <FormControl>
-        <FormLabel>Email</FormLabel>
-        <Input
+        <InputElement
+          label="Adresse Email"
           type="email"
+          placeholder="exemple@mail.com"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          setValue={setEmail}
         />
-        <FormLabel>Mot de passe</FormLabel>
-        <Input
+        <InputElement
+          label="Mot de Passe"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          setValue={setPassword}
         />
         {error && (
           <Text color="red.500" mt={4}>
             {error}
           </Text>
         )}
-        <Button mt={4} colorScheme="teal" onClick={handleSubmit}>
+        <Button mt={4} colorScheme="red" onClick={handleSubmit}>
           Connexion
         </Button>
       </FormControl>
-    </Box>
+    </Container>
   );
 }
 
