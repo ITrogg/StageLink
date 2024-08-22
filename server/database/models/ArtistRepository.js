@@ -65,15 +65,10 @@ class ArtistRepository extends AbstractRepository {
         a.apple_music_link AS apple_music_link,
         a.amazon_music_link AS amazon_music_link,
         c.label AS country,
-        GROUP_CONCAT(gt.label ORDER BY gt.label ASC) AS genre_tags
       FROM
         ${this.table} AS a
       LEFT JOIN
         Country AS c ON a.country_id = c.id
-      LEFT JOIN
-        Artist_Genre_Tag AS agt ON a.id = agt.artist_id
-      LEFT JOIN
-        Genre_Tag AS gt ON agt.genre_tag_id = gt.id
       WHERE
         a.id = ?
       GROUP BY
