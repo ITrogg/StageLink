@@ -3,16 +3,14 @@ const express = require("express");
 const router = express.Router();
 
 /* ************************************************************************* */
-// Import And Use Routers Here
+// Define Your API Routes Here
 /* ************************************************************************* */
 
-const usersRouter = require("./user/router");
+// Import item-related actions
+const { browse, read } = require("../../../controllers/artistActions");
 
-router.use("/user", usersRouter);
-
-const artistsRouter = require("./artist/router");
-
-router.use("/artist", artistsRouter);
+router.get("/", browse);
+router.get("/:id", read);
 
 /* ************************************************************************* */
 
