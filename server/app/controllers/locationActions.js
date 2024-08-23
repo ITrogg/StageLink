@@ -23,6 +23,22 @@ const read = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    const locationId = req.params.id;
+    const location = req.body;
+    const rowsAffected = await tables.Location.update(locationId, location);
+
+    if (rowsAffected === 0) {
+      res.status(404).json({ message: "Location not found" });
+    }
+
+    res.status(200).json(rowsAffected);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const location = req.body;
@@ -37,7 +53,7 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   add,
   // destroy,
 };

@@ -77,6 +77,44 @@ class ArtistRepository extends AbstractRepository {
     );
     return rows[0];
   }
+
+  async update(id, artist) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} 
+       SET  
+        country_id = ?, 
+        logo = ?, 
+        genre = ?, 
+        facebook_link = ?, 
+        twitter_link = ?, 
+        instagram_link = ?, 
+        website = ?, 
+        youtube_link = ?, 
+        bandcamp_link = ?, 
+        spotify_link = ?, 
+        deezer_link = ?, 
+        apple_music_link = ?, 
+        amazon_music_link = ? 
+       WHERE id = ?`,
+      [
+        artist.country_id,
+        artist.logo,
+        artist.genre,
+        artist.facebook_link,
+        artist.twitter_link,
+        artist.instagram_link,
+        artist.website,
+        artist.youtube_link,
+        artist.bandcamp_link,
+        artist.spotify_link,
+        artist.deezer_link,
+        artist.apple_music_link,
+        artist.amazon_music_link,
+        id,
+      ]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = ArtistRepository;

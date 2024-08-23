@@ -48,6 +48,22 @@ const read = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    const eventId = req.params.id;
+    const event = req.body;
+    const rowsAffected = await tables.Event.update(eventId, event);
+
+    if (rowsAffected === 0) {
+      res.status(404).json({ message: "Event not found" });
+    }
+
+    res.status(200).json(rowsAffected);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const event = req.body;
@@ -62,7 +78,7 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   add,
   // destroy,
 };

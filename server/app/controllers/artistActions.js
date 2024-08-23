@@ -29,6 +29,22 @@ const read = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  try {
+    const artistId = req.params.id;
+    const artist = req.body;
+    const rowsAffected = await tables.Artist.update(artistId, artist);
+
+    if (rowsAffected === 0) {
+      res.status(404).json({ message: "Artist not found" });
+    }
+
+    res.status(200).json(rowsAffected);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const artist = req.body;
@@ -43,7 +59,7 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   add,
   // destroy,
 };

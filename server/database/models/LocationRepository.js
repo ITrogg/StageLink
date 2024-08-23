@@ -70,6 +70,50 @@ class LocationRepository extends AbstractRepository {
     );
     return rows[0];
   }
+
+  async update(id, location) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} 
+       SET 
+        name = ?, 
+        address = ?, 
+        city = ?, 
+        state = ?, 
+        country_id = ?, 
+        postal_code = ?, 
+        capacity = ?, 
+        facebook_link = ?, 
+        twitter_link = ?, 
+        instagram_link = ?, 
+        website = ?, 
+        logo = ?, 
+        year_opened = ?, 
+        is_closed = ?, 
+        latitude = ?, 
+        longitude = ?
+       WHERE id = ?`,
+      [
+        location.name,
+        location.address,
+        location.city,
+        location.state,
+        location.country_id,
+        location.postal_code,
+        location.capacity,
+        location.facebook_link,
+        location.twitter_link,
+        location.instagram_link,
+        location.website,
+        location.logo,
+        location.year_opened,
+        location.is_closed,
+        location.latitude,
+        location.longitude,
+        id,
+      ]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = LocationRepository;

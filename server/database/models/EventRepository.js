@@ -163,6 +163,32 @@ class EventRepository extends AbstractRepository {
     );
     return rows[0];
   }
+
+  async update(id, event) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} 
+       SET title = ?, description = ?, start_date = ?, end_date = ?, start_time = ?, 
+           location_id = ?, poster_image = ?, price_prevent = ?, price_at_door = ?, 
+           facebook_link = ?, ticket_link = ?, is_free = ? 
+       WHERE id = ?`,
+      [
+        event.title,
+        event.description,
+        event.start_date,
+        event.end_date,
+        event.start_time,
+        event.location_id,
+        event.poster_image,
+        event.price_prevent,
+        event.price_at_door,
+        event.facebook_link,
+        event.ticket_link,
+        event.is_free,
+        id,
+      ]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = EventRepository;
