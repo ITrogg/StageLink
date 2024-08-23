@@ -64,7 +64,7 @@ class ArtistRepository extends AbstractRepository {
         a.deezer_link AS deezer_link,
         a.apple_music_link AS apple_music_link,
         a.amazon_music_link AS amazon_music_link,
-        c.label AS country,
+        c.label AS country
       FROM
         ${this.table} AS a
       LEFT JOIN
