@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -14,7 +14,7 @@ import logo from "../../assets/images/logo.svg";
 function NavbarExplore() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (isOpen) {
       onClose();
@@ -22,6 +22,11 @@ function NavbarExplore() {
     // Désactivation d'ES Lint pour ne pas mettre isOpen et onClose dans les dépendances
     // eslint-disable-next-line
   }, [location.pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/welcome");
+  };
 
   return (
     <Box bg="black" px={4}>
@@ -43,7 +48,12 @@ function NavbarExplore() {
           <Link to="/salles">Lieux</Link>
           <Link to="/evenements">Événements</Link>
           <Link to="/dashboard">Mon Profil</Link>
-          <Button colorScheme="white" variant="outline" ml={4}>
+          <Button
+            colorScheme="white"
+            variant="outline"
+            ml={4}
+            onClick={handleLogout}
+          >
             Déconnexion
           </Button>
         </Flex>
@@ -70,7 +80,11 @@ function NavbarExplore() {
           <Link to="/salles">Lieux</Link>
           <Link to="/evenements">Événements</Link>
           <Link to="/dashboard">Mon Profil</Link>
-          <Button colorScheme="red.500" variant="outline" w="full">
+          <Button
+            colorScheme="red.500"
+            variant="outline"
+            onClick={handleLogout}
+          >
             Déconnexion
           </Button>
         </Box>
