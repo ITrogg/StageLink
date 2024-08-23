@@ -13,6 +13,12 @@ import ListLocation from "./pages/explore/ListLocation";
 import DetailLocation from "./pages/explore/DetailLocation";
 import ListEvent from "./pages/explore/ListEvent";
 import DetailEvent from "./pages/explore/DetailEvent";
+import UserProfile from "./pages/explore/UserProfile";
+import DashboardLayout from "./pages/layout/DashboardLayout";
+import ProfilePage from "./pages/dashboard/ProfilePage";
+import AgendaPage from "./pages/dashboard/AgendaPage";
+import FavoritesPage from "./pages/dashboard/FavoritesPage";
+import FriendsPage from "./pages/dashboard/FriendsPage";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +34,7 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
           {
-            path: "artists",
+            path: "artistes",
             element: <ListArtist />,
             children: [
               {
@@ -54,6 +60,32 @@ const router = createBrowserRouter([
               {
                 path: ":id",
                 element: <DetailEvent />,
+              },
+            ],
+          },
+          {
+            path: "user/:id",
+            element: <UserProfile />,
+          },
+          {
+            path: "dashboard",
+            element: <DashboardLayout />, // Nouveau layout pour le Dashboard
+            children: [
+              {
+                path: "profile",
+                element: <ProfilePage />,
+              },
+              {
+                path: "agenda",
+                element: <AgendaPage />,
+              },
+              {
+                path: "favorites",
+                element: <FavoritesPage />,
+              },
+              {
+                path: "friends",
+                element: <FriendsPage />,
               },
             ],
           },
