@@ -19,6 +19,7 @@ import ProfilePage from "./pages/dashboard/ProfilePage";
 import AgendaPage from "./pages/dashboard/AgendaPage";
 import FavoritesPage from "./pages/dashboard/FavoritesPage";
 import FriendsPage from "./pages/dashboard/FriendsPage";
+import NewEvent from "./pages/explore/NewEvent";
 
 const router = createBrowserRouter([
   {
@@ -27,67 +28,65 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <ConnectedLayout />,
+    element: <App />,
     children: [
       {
         path: "",
-        element: <App />,
+        element: <ConnectedLayout />,
         children: [
           {
             path: "artistes",
             element: <ListArtist />,
-            children: [
-              {
-                path: ":id",
-                element: <DetailArtist />,
-              },
-            ],
+          },
+          {
+            path: "artistes/:id",
+            element: <DetailArtist />,
           },
           {
             path: "salles",
             element: <ListLocation />,
-            children: [
-              {
-                path: ":id",
-                element: <DetailLocation />,
-              },
-            ],
+          },
+          {
+            path: "salles/:id",
+            element: <DetailLocation />,
           },
           {
             path: "evenements",
             element: <ListEvent />,
-            children: [
-              {
-                path: ":id",
-                element: <DetailEvent />,
-              },
-            ],
+          },
+          {
+            path: "evenements/nouveau",
+            element: <NewEvent />,
+          },
+          {
+            path: "evenements/:id",
+            element: <DetailEvent />,
           },
           {
             path: "user/:id",
             element: <UserProfile />,
           },
+        ],
+      },
+      {
+        path: "dashboard",
+        element: <DashboardLayout />,
+        children: [
           {
-            path: "dashboard",
-            element: <DashboardLayout />, // Nouveau layout pour le Dashboard
-            children: [
-              {
-                path: "profile",
-                element: <ProfilePage />,
-              },
-              {
-                path: "agenda",
-                element: <AgendaPage />,
-              },
-              {
-                path: "favorites",
-                element: <FavoritesPage />,
-              },
-              {
-                path: "friends",
-                element: <FriendsPage />,
-              },
-            ],
+            path: "",
+            element: <ProfilePage />,
+          },
+          {
+            path: "agenda",
+            element: <AgendaPage />,
+          },
+          {
+            path: "favorites",
+            element: <FavoritesPage />,
+          },
+          {
+            path: "friends",
+            element: <FriendsPage />,
           },
         ],
       },
