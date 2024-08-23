@@ -35,13 +35,19 @@ class ArtistRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT
         a.id,
-        a.name
+        a.name,
+        a.genre,
+        COUNT(e.id) AS events
       FROM 
-        ${this.table} a
+        ${this.table} AS a
       JOIN 
-        Event_Artist ea ON a.id = ea.artist_id
+        Event_Artist AS ea ON a.id = ea.artist_id
+      LEFT JOIN 
+        Event AS e ON ea.event_id = e.id AND e.start_date > CURDATE()
       WHERE 
-        ea.event_id = ?`,
+        ea.event_id = ?
+      GROUP BY
+        a.id, a.name, a.genre;`,
       [eventId]
     );
     return rows;

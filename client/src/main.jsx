@@ -41,8 +41,8 @@ const router = createBrowserRouter([
             element: <ListArtist />,
             loader: async () => {
               try {
-                const artist = await connexion.get(`/api/artist`);
-                return artist.data;
+                const artists = await connexion.get(`/api/artist`);
+                return artists.data;
               } catch (error) {
                 throw new Error(error);
               }
@@ -66,7 +66,12 @@ const router = createBrowserRouter([
                       `/api/event?type=futurByArtist&artistId=${params.id}`
                     ),
                   ]);
-                return [artist.data, genreTags.data, pastEvents, futurEvents];
+                return [
+                  artist.data,
+                  genreTags.data,
+                  pastEvents.data,
+                  futurEvents.data,
+                ];
               } catch (error) {
                 throw new Error(error);
               }
