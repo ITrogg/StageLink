@@ -12,8 +12,8 @@ const add = async (req, res, next) => {
 
 const destroy = async (req, res, next) => {
   try {
-    const result = await tables.ArtistGenreTag.delete(req.params.id);
-    res.status(200).json(result);
+    const rowsAffected = await tables.ArtistGenreTag.delete(req.params.id);
+    res.status(200).json(rowsAffected);
   } catch (err) {
     next(err);
   }

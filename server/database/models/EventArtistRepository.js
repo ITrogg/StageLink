@@ -18,7 +18,7 @@ class EventArtistRepository extends AbstractRepository {
       `DELETE FROM ${this.table} WHERE id =?`,
       [id]
     );
-    return result;
+    return result.affectedRows;
   }
 }
 

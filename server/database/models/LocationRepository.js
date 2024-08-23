@@ -60,12 +60,11 @@ class LocationRepository extends AbstractRepository {
         l.latitude,
         l.longitude
       FROM 
-          Location l
+          ${this.table} AS l
       JOIN 
           Country c ON l.country_id = c.id
       WHERE 
-          l.id = ?;
-      `,
+          l.id = ?;`,
       [id]
     );
     return rows[0];

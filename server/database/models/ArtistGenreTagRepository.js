@@ -18,7 +18,7 @@ class artistGenreTagRepository extends AbstractRepository {
       `DELETE FROM Artist_Genre_Tag WHERE id =?`,
       [id]
     );
-    return result;
+    return result.affectedRows;
   }
 }
 
