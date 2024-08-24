@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
 import connexion from "../../services/connexion";
-import InputElement from "../UI/Input";
+import InputElement from "../UI/InputComponent";
 
 function Connection() {
   const navigate = useNavigate();

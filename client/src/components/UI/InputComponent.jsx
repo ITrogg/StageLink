@@ -1,11 +1,20 @@
 import PropTypes from "prop-types";
-import { FormLabel, Input } from "@chakra-ui/react";
+import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
-function InputElement({ label, type, placeholder, value, setValue }) {
+function InputComponent({
+  id,
+  label,
+  type,
+  placeholder,
+  isRequired,
+  value,
+  setValue,
+}) {
   return (
-    <FormLabel>
-      {label}
+    <FormControl id={id} isRequired={isRequired}>
+      <FormLabel>{label}</FormLabel>
       <Input
+        name={id}
         type={type}
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -21,19 +30,23 @@ function InputElement({ label, type, placeholder, value, setValue }) {
         _placeholder={{ color: "gray.500" }}
         size="lg"
       />
-    </FormLabel>
+    </FormControl>
   );
 }
 
-InputElement.propTypes = {
+InputComponent.propTypes = {
+  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  isRequired: PropTypes.bool,
   value: PropTypes.string.isRequired,
   setValue: PropTypes.func.isRequired,
 };
-InputElement.defaultProps = {
-  placeholder: "", // Valeur par défaut pour placeholder
+
+InputComponent.defaultProps = {
+  placeholder: "",
+  isRequired: false,
 };
 
-export default InputElement;
+export default InputComponent;

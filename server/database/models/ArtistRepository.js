@@ -31,6 +31,18 @@ class ArtistRepository extends AbstractRepository {
     return rows;
   }
 
+  async readForInput() {
+    const [rows] = await this.database.query(
+      `SELECT 
+        id, 
+        name AS label
+      FROM
+        ${this.table} 
+      `
+    );
+    return rows;
+  }
+
   async readbyEvent(eventId) {
     const [rows] = await this.database.query(
       `SELECT

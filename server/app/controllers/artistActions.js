@@ -4,12 +4,21 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   const { type, eventId } = req.query;
   try {
-    if (type === "byEvent") {
-      const artists = await tables.Artist.readbyEvent(eventId);
-      res.status(200).json(artists);
-    } else {
-      const artists = await tables.Artist.readAll();
-      res.status(200).json(artists);
+    switch (type) {
+      case "byEvent": {
+        const artists = await tables.Artist.readbyEvent(eventId);
+        res.status(200).json(artists);
+        break;
+      }
+      case "forInput": {
+        const artists = await tables.Artist.readForInput();
+        res.status(200).json(artists);
+        break;
+      }
+      default: {
+        const artists = await tables.Artist.readAll();
+        res.status(200).json(artists);
+      }
     }
   } catch (err) {
     next(err);

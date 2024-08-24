@@ -40,6 +40,17 @@ class LocationRepository extends AbstractRepository {
     return rows;
   }
 
+  async readForInput() {
+    const [rows] = await this.database.query(
+      `SELECT 
+        id,
+        name as label
+      FROM 
+          ${this.table}`
+    );
+    return rows;
+  }
+
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT 

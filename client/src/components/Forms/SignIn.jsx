@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
-import InputElement from "../UI/Input";
+import InputElement from "../UI/InputComponent";
 
 import connexion from "../../services/connexion";
 

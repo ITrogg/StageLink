@@ -2,11 +2,21 @@
 const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
-  try {
-    const locations = await tables.Location.readAll();
-    res.status(200).json(locations);
-  } catch (err) {
-    next(err);
+  const { type } = req.query;
+  if (type === "forInput") {
+    try {
+      const locations = await tables.Location.readForInput();
+      res.status(200).json(locations);
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    try {
+      const locations = await tables.Location.readAll();
+      res.status(200).json(locations);
+    } catch (err) {
+      next(err);
+    }
   }
 };
 
