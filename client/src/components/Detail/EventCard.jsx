@@ -64,7 +64,7 @@ EventCard.propTypes = {
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     location_name: PropTypes.string,
-    logo: PropTypes.string.isRequired,
+    logo: PropTypes.string,
     start_date: PropTypes.string.isRequired,
   }).isRequired,
 };

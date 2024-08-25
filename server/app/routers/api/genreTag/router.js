@@ -7,9 +7,10 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, add } = require("../../../controllers/genreTagActions");
+const { browse, read, add } = require("../../../controllers/genreTagActions");
 
 router.get("/", browse);
+router.get("/:id", read);
 router.post("/", add);
 
 /* ************************************************************************* */

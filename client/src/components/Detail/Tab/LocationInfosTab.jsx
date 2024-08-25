@@ -31,13 +31,7 @@ function LocationInfosTab({ location }) {
 
         <Divider my={4} />
 
-        {links.length > 0 ? (
-          links.map((link) => (
-            <LinksCard key={link.title} title={link.title} link={link.url} />
-          ))
-        ) : (
-          <Text color="gray.500">Aucun lien disponible</Text>
-        )}
+        <LinksCard links={links} />
       </VStack>
     </Box>
   );

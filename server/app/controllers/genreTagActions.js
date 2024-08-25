@@ -16,6 +16,15 @@ const browse = async (req, res, next) => {
   }
 };
 
+const read = async (req, res, next) => {
+  try {
+    const genreTag = await tables.GenreTag.read(req.params.id);
+    res.status(200).json(genreTag);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const add = async (req, res, next) => {
   try {
     const { label } = req.body;
@@ -29,7 +38,7 @@ const add = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
-  // read,
+  read,
   // edit,
   add,
   // destroy,

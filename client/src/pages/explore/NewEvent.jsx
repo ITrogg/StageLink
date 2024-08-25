@@ -169,6 +169,34 @@ function AddEventForm() {
             </AccordionItem>
           </Accordion>
         </FormControl>
+        {/* qui */}
+        <FormControl as="fieldset">
+          <MultipleAutoCompleteInput
+            id="artists"
+            label="Artistes"
+            placeholder="nouvel artiste"
+            selectedItemIds={artistIds}
+            setSelectedItemIds={setArtistIds}
+            queryForTags="?type=forTag"
+            url="api/artist"
+            queryForInput="?type=forInput"
+            displayedValue={displayedArtist}
+            setDisplayedValue={setDisplayedArtist}
+          />
+          <Accordion allowToggle mt={4}>
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Ajouter des artistes
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                <AddArtist onArtistAdded={handleAddArtist} />
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </FormControl>
         {/* combien */}
         <FormControl as="fieldset">
           <FormControl id="is_free">
@@ -206,34 +234,6 @@ function AddEventForm() {
               />
             </>
           )}
-        </FormControl>
-        {/* qui */}
-        <FormControl as="fieldset">
-          <MultipleAutoCompleteInput
-            id="artists"
-            label="Artistes"
-            placeholder="nouvel artiste"
-            selectedItemIds={artistIds}
-            setSelectedItemIds={setArtistIds}
-            queryForTags="?type=forTag"
-            url="api/artist"
-            queryForInput="?type=forInput"
-            displayedValue={displayedArtist}
-            setDisplayedValue={setDisplayedArtist}
-          />
-          <Accordion allowToggle mt={4}>
-            <AccordionItem>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  Ajouter des artistes
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-              <AccordionPanel>
-                <AddArtist onArtistAdded={handleAddArtist} />
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
         </FormControl>
         {/* détail supllémentaire */}
         <FormControl as="fieldset">

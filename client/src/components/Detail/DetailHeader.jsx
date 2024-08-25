@@ -19,8 +19,4 @@ DetailHeader.propTypes = {
   imageUrl: PropTypes.string,
 };
 
-DetailHeader.defaultProps = {
-  imageUrl: "",
-};
-
 export default DetailHeader;

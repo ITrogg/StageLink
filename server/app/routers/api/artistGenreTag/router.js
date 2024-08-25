@@ -10,7 +10,7 @@ const router = express.Router();
 const { add, destroy } = require("../../../controllers/ArtistGenreTagActions");
 
 router.post("/", add);
-router.delete("/:id", destroy);
+router.delete("/", destroy);
 
 /* ************************************************************************* */
 

@@ -115,7 +115,6 @@ class ArtistRepository extends AbstractRepository {
     const [result] = await this.database.query(
       `UPDATE ${this.table} 
        SET  
-        country_id = ?, 
         logo = ?, 
         genre = ?, 
         facebook_link = ?, 
@@ -130,7 +129,6 @@ class ArtistRepository extends AbstractRepository {
         amazon_music_link = ? 
        WHERE id = ?`,
       [
-        artist.country_id,
         artist.logo,
         artist.genre,
         artist.facebook_link,

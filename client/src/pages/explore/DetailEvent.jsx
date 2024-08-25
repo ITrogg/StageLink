@@ -1,14 +1,29 @@
+import {
+  Button,
+  Box,
+  Heading,
+  Text,
+  VStack,
+  Divider,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+} from "@chakra-ui/react";
 import { useLoaderData } from "react-router-dom";
-import { Box, Heading, Text, VStack, Divider } from "@chakra-ui/react";
 import DetailHeader from "../../components/Detail/DetailHeader";
 import ArtistTable from "../../components/Detail/ArtistTable";
+import EditEventForm from "../../components/Forms/EditEvent";
 
 function EventDetail() {
   const [event, artists] = useLoaderData();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box p={6}>
       <DetailHeader title={event.title} imageUrl={event.poster_image} />
+      <Button colorScheme="teal" onClick={onOpen}>
+        Modifier l'événement
+      </Button>
 
       <Box mt={6} p={4} bg="white" borderRadius="md" boxShadow="md">
         <Heading as="h2" size="lg" mb={4}>
@@ -68,6 +83,12 @@ function EventDetail() {
       <Divider my={6} />
 
       <ArtistTable artists={artists} />
+
+      {/* Modal pour la modification */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <EditEventForm event={event} onClose={onClose} />
+      </Modal>
     </Box>
   );
 }

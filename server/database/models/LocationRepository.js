@@ -54,28 +54,26 @@ class LocationRepository extends AbstractRepository {
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT 
-        l.name,
-        l.address,
-        l.city,
-        l.state,
-        c.label AS country,
-        l.postal_code,
-        l.capacity,
-        l.facebook_link,
-        l.twitter_link,
-        l.instagram_link,
-        l.website,
-        l.logo,
-        l.year_opened,
-        l.is_closed,
-        l.latitude,
-        l.longitude
+        name,
+        address,
+        city,
+        state,
+        country,
+        postal_code,
+        capacity,
+        facebook_link,
+        twitter_link,
+        instagram_link,
+        website,
+        logo,
+        year_opened,
+        is_closed,
+        latitude,
+        longitude
       FROM 
-          ${this.table} AS l
-      JOIN 
-          Country c ON l.country_id = c.id
+          ${this.table}
       WHERE 
-          l.id = ?;`,
+          id = ?`,
       [id]
     );
     return rows[0];
@@ -84,13 +82,7 @@ class LocationRepository extends AbstractRepository {
   async update(id, location) {
     const [result] = await this.database.query(
       `UPDATE ${this.table} 
-       SET 
-        name = ?, 
-        address = ?, 
-        city = ?, 
-        state = ?, 
-        country = ?, 
-        postal_code = ?, 
+       SET
         capacity = ?, 
         facebook_link = ?, 
         twitter_link = ?, 
@@ -98,17 +90,9 @@ class LocationRepository extends AbstractRepository {
         website = ?, 
         logo = ?, 
         year_opened = ?, 
-        is_closed = ?, 
-        latitude = ?, 
-        longitude = ?
+        is_closed = ? 
        WHERE id = ?`,
       [
-        location.name,
-        location.address,
-        location.city,
-        location.state,
-        location.country,
-        location.postal_code,
         location.capacity,
         location.facebook_link,
         location.twitter_link,
@@ -117,8 +101,6 @@ class LocationRepository extends AbstractRepository {
         location.logo,
         location.year_opened,
         location.is_closed,
-        location.latitude,
-        location.longitude,
         id,
       ]
     );

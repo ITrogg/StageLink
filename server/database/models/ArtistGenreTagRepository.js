@@ -13,10 +13,10 @@ class artistGenreTagRepository extends AbstractRepository {
     return result.insertId;
   }
 
-  async delete(id) {
+  async delete(artistId, genreId) {
     const [result] = await this.database.query(
-      `DELETE FROM Artist_Genre_Tag WHERE id =?`,
-      [id]
+      `DELETE FROM Artist_Genre_Tag WHERE genre_tag_id = ? AND artist_id = ?`,
+      [genreId, artistId]
     );
     return result.affectedRows;
   }

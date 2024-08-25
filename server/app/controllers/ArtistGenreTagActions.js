@@ -11,8 +11,10 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { artistId, genreId } = req.query;
+
   try {
-    const rowsAffected = await tables.ArtistGenreTag.delete(req.params.id);
+    const rowsAffected = await tables.ArtistGenreTag.delete(artistId, genreId);
     res.status(200).json(rowsAffected);
   } catch (err) {
     next(err);
