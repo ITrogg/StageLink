@@ -7,13 +7,13 @@ class LocationRepository extends AbstractRepository {
 
   async create(location) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (name, address, city, state, country_id, postal_code, latitude, longitude) VALUES (?,?,?,?,?,?,?,?)`,
+      `INSERT INTO ${this.table} (name, address, city, state, country, postal_code, latitude, longitude) VALUES (?,?,?,?,?,?,?,?)`,
       [
         location.name,
-        location.addresse,
+        location.address,
         location.city,
         location.state,
-        location.country_id,
+        location.country,
         location.postal_code,
         location.latitude,
         location.longitude,
@@ -89,7 +89,7 @@ class LocationRepository extends AbstractRepository {
         address = ?, 
         city = ?, 
         state = ?, 
-        country_id = ?, 
+        country = ?, 
         postal_code = ?, 
         capacity = ?, 
         facebook_link = ?, 
@@ -107,7 +107,7 @@ class LocationRepository extends AbstractRepository {
         location.address,
         location.city,
         location.state,
-        location.country_id,
+        location.country,
         location.postal_code,
         location.capacity,
         location.facebook_link,

@@ -20,7 +20,7 @@ CREATE TABLE `Location` (
   `address` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
-  `country_id` int NOT NULL,
+  `country` varchar(255) NOT NULL,
   `postal_code` varchar(255) NOT NULL,
   `capacity` int,
   `facebook_link` varchar(255),
@@ -33,8 +33,7 @@ CREATE TABLE `Location` (
   `latitude` decimal(9,6) NOT NULL,
   `longitude` decimal(9,6) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  FOREIGN KEY (`country_id`) REFERENCES `Country`(`id`)
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE `Event` (
@@ -172,15 +171,15 @@ INSERT INTO `User` (`id`, `username`, `email`, `password`) VALUES
 
 INSERT INTO `Country` (`label`) VALUES ('France'),('Allemagne'),('Italie'),('Espagne'),('Royaume-Uni'),('Belgique'),('Pays-Bas'),('Suisse'),('Autriche'),('Suède'),('Norvège'),('Danemark'),('Finlande'),('Portugal'),('Grèce'),('Irlande'),('Pologne'),('République Tchèque'),('Hongrie'),('Roumanie'),('Bulgarie'),('Croatie'),('Slovaquie'),('Slovénie'),('Lituanie'),('Lettonie'),('Estonie'),('Luxembourg'),('Malte'),('Chypre'),('Russie'),('Turquie'),('Ukraine'),('Islande'),('États-Unis'),('Canada'),('Brésil'),('Australie'),('Japon'),('Chine'),('Inde'),('Afrique du Sud');
 
-INSERT INTO `Location` (`name`, `address`, `city`, `state`, `country_id`, `postal_code`, `latitude`, `longitude`)
-VALUES
-('Au Bout de Nos Rêves', "Grand'Route 141", 'Tournai', '', (SELECT id FROM Country WHERE label = 'Belgique'), '7500', 50.595729, 3.480900),
-('Le Grand Mix', '5 Rue de l\'Hôpital Militaire', 'Tourcoing', '', (SELECT id FROM Country WHERE label = 'France'), '59200', 50.721500, 3.157000),
-('Aéronef', '168 Avenue Willy Brandt', 'Lille', '', (SELECT id FROM Country WHERE label = 'France'), '59777', 50.637083, 3.070833),
-('Le Splendid', '1 Rue de la Gare', 'Lille', '', (SELECT id FROM Country WHERE label = 'France'), '59000', 50.631788, 3.067778),
-('La Cave aux Poètes', '16 Rue du Grand Chemin', 'Roubaix', '', (SELECT id FROM Country WHERE label = 'France'), '59100', 50.691400, 3.174700),
-('Théâtre Sébastopol', 'Place Sébastopol', 'Lille', '', (SELECT id FROM Country WHERE label = 'France'), '59000', 50.629788, 3.053211),
-('La Brat Cave', '23 Rue Henri Kolb', 'Lille', '', (SELECT id FROM Country WHERE label = 'France'), '59000', 50.624164, 3.065137);
+INSERT INTO `Location` (`name`, `address`, `city`, `state`, `country`, `postal_code`, `capacity`, `facebook_link`, `twitter_link`, `instagram_link`, `website`, `logo`, `year_opened`, `is_closed`, `latitude`, `longitude`) VALUES
+('Au Bout de Nos Rêves', 'Grand\'Route 141', 'Tournai', 'Wallonie', 'Belgique', '7500', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.595729, 3.480900),
+('Le Grand Mix', '5 Rue de l\'Hôpital Militaire', 'Tourcoing', 'Nord', 'France', '59200', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.721500, 3.157000),
+('Aéronef', '168 Avenue Willy Brandt', 'Lille', 'Nord', 'France', '59777', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.637083, 3.070833),
+('Le Splendid', '1 Rue de la Gare', 'Lille', 'Nord', 'France', '59000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.631788, 3.067778),
+('La Cave aux Poètes', '16 Rue du Grand Chemin', 'Roubaix', 'Nord', 'France', '59100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.691400, 3.174700),
+('Théâtre Sébastopol', 'Place Sébastopol', 'Lille', 'Nord', 'France', '59000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.629788, 3.053211),
+('La Brat Cave', '23 Rue Henri Kolb', 'Lille', 'Nord', 'France', '59000', NULL, NULL, NULL, NULL, NULL, NULL, NULL, FALSE, 50.624164, 3.065137);
+
 
 INSERT INTO `Event` (`title`, `description`, `start_date`, `end_date`, `start_time`, `location_id`, `created_by`, `poster_image`, `price_prevent`, `price_at_door`, `facebook_link`, `is_free`)
 VALUES
