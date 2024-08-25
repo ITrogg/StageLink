@@ -25,6 +25,7 @@
       {
         "assert": "either"
       }
-    ]
+    ],
+    "react/require-default-props": "off"
   }
 }

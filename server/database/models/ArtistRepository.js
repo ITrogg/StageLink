@@ -96,6 +96,21 @@ class ArtistRepository extends AbstractRepository {
     return rows[0];
   }
 
+  async readForTag(id) {
+    const [rows] = await this.database.query(
+      `SELECT 
+        id, 
+        name AS label
+      FROM
+        ${this.table} 
+      WHERE
+        id = ?
+      `,
+      [id]
+    );
+    return rows;
+  }
+
   async update(id, artist) {
     const [result] = await this.database.query(
       `UPDATE ${this.table} 

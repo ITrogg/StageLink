@@ -6,34 +6,47 @@ import connexion from "../../services/connexion";
 function AutoCompleteInput({
   id,
   label,
-  value,
+  displayedValue,
+  setDisplayedValue,
   setValue,
   placeholder,
   isRequired,
   url,
+  query,
 }) {
   const [options, setOptions] = useState([]);
-
   useEffect(() => {
     const getOptions = async () => {
       try {
-        const response = await connexion.get(url);
+        const response = await connexion.get(url + query);
         setOptions(response.data);
       } catch (err) {
         throw new Error(err);
       }
     };
     getOptions();
-  }, [url]);
+  }, [url, query]);
+
+  const handleOptionSelect = (e) => {
+    const selectedOption = options.find(
+      (option) => option.label === e.target.value
+    );
+    if (selectedOption) {
+      setValue(selectedOption.id);
+      setDisplayedValue(selectedOption.label);
+    } else {
+      setDisplayedValue(e.target.value);
+    }
+  };
 
   return (
     <FormControl id={id} isRequired={isRequired}>
       <FormLabel>{label}</FormLabel>
       <Input
         name={id}
-        list="autocomplete-list"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        list={`autocomplete-list-${id}`}
+        value={displayedValue}
+        onChange={handleOptionSelect}
         placeholder={placeholder}
         bg="white"
         borderColor="gray.300"
@@ -46,9 +59,9 @@ function AutoCompleteInput({
         _placeholder={{ color: "gray.500" }}
         size="lg"
       />
-      <datalist id="autocomplete-list">
+      <datalist id={`autocomplete-list-${id}`}>
         {options.map((option) => (
-          <option key={option.id} value={option.id}>
+          <option key={option.id} value={option.label}>
             {option.label}
           </option>
         ))}
@@ -60,16 +73,13 @@ function AutoCompleteInput({
 AutoCompleteInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
   setValue: PropTypes.func.isRequired,
+  setDisplayedValue: PropTypes.func.isRequired,
+  displayedValue: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   isRequired: PropTypes.bool,
   url: PropTypes.string.isRequired,
-};
-
-AutoCompleteInput.defaultProps = {
-  isRequired: false,
-  placeholder: "",
+  query: PropTypes.string.isRequired,
 };
 
 export default AutoCompleteInput;

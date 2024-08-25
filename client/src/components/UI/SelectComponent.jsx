@@ -59,9 +59,4 @@ SelectComponent.propTypes = {
   isRequired: PropTypes.bool,
 };
 
-SelectComponent.defaultProps = {
-  isRequired: false,
-  placeholder: "",
-};
-
 export default SelectComponent;

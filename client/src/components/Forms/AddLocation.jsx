@@ -1,15 +1,7 @@
 import { useState, useRef } from "react";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import PropTypes from "prop-types";
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  VStack,
-  Heading,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, VStack, Heading, Text } from "@chakra-ui/react";
 import InputComponent from "../UI/InputComponent";
 
 import connexion from "../../services/connexion";
@@ -72,8 +64,9 @@ function AddLocationForm({ onLocationAdded }) {
         longitude,
       };
 
-      await connexion.post("/api/location", newLocation);
-      onLocationAdded(); // Appel du callback pour notifier que l'ajout est terminé
+      const response = await connexion.post("/api/location", newLocation);
+
+      onLocationAdded(response.data, newLocation.name); // Appel du callback pour notifier que l'ajout est terminé
     } catch (err) {
       setError("Erreur lors de l'ajout du lieu.");
       console.error("Error adding location:", err); // Ajout d'un log pour le débogage
@@ -87,31 +80,38 @@ function AddLocationForm({ onLocationAdded }) {
       </Heading>
       <VStack spacing={4} align="start">
         {error && <Text color="red.500">{error}</Text>}
-        <FormControl id="name" isRequired>
-          <FormLabel>Nom du lieu</FormLabel>
-          <InputComponent
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Nom du lieu"
-          />
-        </FormControl>
 
-        <FormControl id="address" isRequired>
-          <FormLabel>Adresse</FormLabel>
-          <LoadScript
-            googleMapsApiKey={GOOGLE_MAPS_API_KEY}
-            libraries={["places"]}
+        <InputComponent
+          id="name"
+          label="Nom du lieu"
+          value={name}
+          type="text"
+          setValue={setName}
+          placeholder="Nom du lieu"
+          isRequired
+        />
+
+        <LoadScript
+          googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+          libraries={["places"]}
+        >
+          <Autocomplete
+            onLoad={(autocomplete) => {
+              autocompleteRef.current = autocomplete;
+            }}
+            onPlaceChanged={onPlaceSelect}
           >
-            <Autocomplete
-              onLoad={(autocomplete) => {
-                autocompleteRef.current = autocomplete;
-              }}
-              onPlaceChanged={onPlaceSelect}
-            >
-              <InputComponent placeholder="Entrez l'adresse" />
-            </Autocomplete>
-          </LoadScript>
-        </FormControl>
+            <InputComponent
+              isRequired
+              id="address"
+              label="Adresse"
+              placeholder="Entrez l'adresse"
+              type="text"
+              value={address}
+              setValue={setAddress}
+            />
+          </Autocomplete>
+        </LoadScript>
 
         <Button colorScheme="blue" onClick={handleSubmit}>
           Ajouter le lieu

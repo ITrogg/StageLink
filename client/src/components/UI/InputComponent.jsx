@@ -44,9 +44,4 @@ InputComponent.propTypes = {
   setValue: PropTypes.func.isRequired,
 };
 
-InputComponent.defaultProps = {
-  placeholder: "",
-  isRequired: false,
-};
-
 export default InputComponent;

@@ -8,7 +8,7 @@ import connexion from "../../services/connexion";
 
 function AddArtist({ onArtistAdded }) {
   const [name, setName] = useState("");
-  const [countryId, setCountryId] = useState("");
+  const [countryId, setCountryId] = useState(0);
   const [genre, setGenre] = useState("");
 
   const handleSubmit = async () => {

@@ -1,44 +1,39 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
-import connexion from "../../services/connexion";
-import InputElement from "../UI/InputComponent";
+import InputComponent from "../UI/InputComponent";
+
+import { AuthContext } from "../../services/AuthContext";
 
 function Connection() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const { login, error } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await connexion.post("api/user/login", { email, password });
-
-      if (res.data.token) {
-        localStorage.setItem("authToken", res.data.token);
-        navigate("/");
-      } else {
-        setError("Erreur de connexion. Veuillez réessayer");
-      }
-    } catch (err) {
-      setError("Erreur de connexion. Veuillez réessayer.");
+    const success = await login(email, password);
+    if (success) {
+      navigate("/");
     }
   };
 
   return (
     <Container p={5}>
       <FormControl>
-        <InputElement
+        <InputComponent
+          id="email"
           label="Adresse Email"
           type="email"
           placeholder="exemple@mail.com"
           value={email}
           setValue={setEmail}
         />
-        <InputElement
+        <InputComponent
+          id="password"
           label="Mot de Passe"
           type="password"
           value={password}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -8,13 +8,18 @@ import {
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
+
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import logo from "../../assets/images/logo.svg";
 
+import { AuthContext } from "../../services/AuthContext";
+
 function NavbarExplore() {
+  const { logout } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (isOpen) {
       onClose();
@@ -24,7 +29,7 @@ function NavbarExplore() {
   }, [location.pathname]);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
+    logout();
     navigate("/welcome");
   };
 
