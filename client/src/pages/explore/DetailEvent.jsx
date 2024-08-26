@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Button,
   Box,
@@ -17,10 +18,13 @@ import DetailHeader from "../../components/Detail/DetailHeader";
 import ArtistTable from "../../components/Detail/ArtistTable";
 import EditEventForm from "../../components/Forms/EditEvent";
 
+import { AuthContext } from "../../services/AuthContext";
+
 function EventDetail() {
   const [event, artists] = useLoaderData();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isEventPast = new Date(event.start_date) < new Date();
+  const { handleEventStatus } = useContext(AuthContext);
 
   return (
     <Box p={6}>
@@ -35,6 +39,7 @@ function EventDetail() {
               icon={<CheckIcon />}
               aria-label="Événement passé"
               colorScheme="gray"
+              onClick={() => handleEventStatus(event.id, "attended")}
             />
           </Tooltip>
         ) : (
@@ -47,6 +52,7 @@ function EventDetail() {
                 icon={<BellIcon />}
                 aria-label="Activer les notifications"
                 colorScheme="yellow"
+                onClick={() => handleEventStatus(event.id, "interested")}
               />
             </Tooltip>
             <Tooltip
@@ -57,6 +63,7 @@ function EventDetail() {
                 icon={<CalendarIcon />}
                 aria-label="Ajouter au calendrier"
                 colorScheme="red"
+                onClick={() => handleEventStatus(event.id, "going")}
               />
             </Tooltip>
           </>

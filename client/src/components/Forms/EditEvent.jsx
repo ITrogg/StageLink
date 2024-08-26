@@ -24,7 +24,7 @@ import AddArtist from "./AddArtist";
 
 import connexion from "../../services/connexion";
 
-function AddEventForm({ event, onClose }) {
+function EditEvent({ event, onClose }) {
   const [description, setDescription] = useState(event.description);
   const [startTime, setStartTime] = useState(event.start_time);
   const [posterImage, setPosterImage] = useState(event.poster_image);
@@ -201,14 +201,14 @@ function AddEventForm({ event, onClose }) {
   );
 }
 
-AddEventForm.propTypes = {
+EditEvent.propTypes = {
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     start_time: PropTypes.string.isRequired,
     poster_image: PropTypes.string.isRequired,
-    price_prevent: PropTypes.number,
-    price_at_door: PropTypes.number,
+    price_prevent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    price_at_door: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     facebook_link: PropTypes.string,
     ticket_link: PropTypes.string,
     is_free: PropTypes.bool.isRequired,
@@ -216,4 +216,4 @@ AddEventForm.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default AddEventForm;
+export default EditEvent;

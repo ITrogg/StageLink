@@ -1,8 +1,14 @@
 // AuthContext.js
-import { createContext, useState, useEffect, useMemo } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
 import PropTypes from "prop-types";
 import { jwtDecode } from "jwt-decode";
-import axios from "./connexion";
+import connexion from "./connexion";
 
 const AuthContext = createContext();
 
@@ -22,9 +28,48 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  const handleEventStatus = useCallback(
+    async (eventId, newStatus) => {
+      try {
+        const existingSave = await connexion.get(
+          `api/eventSave/${user.id}/${eventId}`
+        );
+
+        if (existingSave.data.status === newStatus) {
+          const deleteSave = await connexion.delete(
+            `api/eventSave/${user.id}/${eventId}`
+          );
+          return deleteSave;
+        }
+
+        const updateSave = await connexion.put(
+          `api/eventSave/${user.id}/${eventId}`,
+          {
+            status: newStatus,
+          }
+        );
+        return updateSave;
+      } catch (err) {
+        if (err.status === 404) {
+          const newSave = await connexion.post(`api/eventSave/`, {
+            user_id: user.id,
+            event_id: eventId,
+            status: newStatus,
+          });
+          return newSave;
+        }
+        throw new Error(err);
+      }
+    },
+    [user]
+  );
+
   const login = async (email, password) => {
     try {
-      const response = await axios.post("api/user/login", { email, password });
+      const response = await connexion.post("api/user/login", {
+        email,
+        password,
+      });
 
       const { token } = response.data;
       if (token) {
@@ -51,9 +96,10 @@ function AuthProvider({ children }) {
       user,
       login,
       logout,
+      handleEventStatus,
       error,
     }),
-    [user, error]
+    [user, error, handleEventStatus]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

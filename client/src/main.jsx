@@ -15,7 +15,6 @@ import ListLocation from "./pages/explore/ListLocation";
 import DetailLocation from "./pages/explore/DetailLocation";
 import ListEvent from "./pages/explore/ListEvent";
 import DetailEvent from "./pages/explore/DetailEvent";
-import UserProfile from "./pages/explore/UserProfile";
 import DashboardLayout from "./pages/layout/DashboardLayout";
 import ProfilePage from "./pages/dashboard/ProfilePage";
 import AgendaPage from "./pages/dashboard/AgendaPage";
@@ -147,10 +146,6 @@ const router = createBrowserRouter([
                 throw new Error(error);
               }
             },
-          },
-          {
-            path: "user/:id",
-            element: <UserProfile />,
           },
         ],
       },

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   Box,
   Image,
@@ -11,10 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BellIcon, CalendarIcon, CheckIcon } from "@chakra-ui/icons";
+
+import { AuthContext } from "../../services/AuthContext";
 import connexion from "../../services/connexion";
 
 function EventCard({ event }) {
   const [artists, setArtists] = useState([]);
+  const { handleEventStatus } = useContext(AuthContext);
 
   useEffect(() => {
     async function getArtists() {
@@ -81,7 +84,11 @@ function EventCard({ event }) {
       <Box position="absolute" top="2" right="2" display="flex" gap="2">
         {isPastEvent ? (
           <Tooltip label="Événement passé" aria-label="Événement passé">
-            <IconButton icon={<CheckIcon />} aria-label="Événement passé" />
+            <IconButton
+              onClick={() => handleEventStatus(event.id, "attended")}
+              icon={<CheckIcon />}
+              aria-label="Événement passé"
+            />
           </Tooltip>
         ) : (
           <>
@@ -90,6 +97,7 @@ function EventCard({ event }) {
               aria-label="Ajouter au calendrier"
             >
               <IconButton
+                onClick={() => handleEventStatus(event.id, "going")}
                 icon={<CalendarIcon />}
                 aria-label="Ajouter au calendrier"
               />
@@ -101,6 +109,7 @@ function EventCard({ event }) {
               <IconButton
                 icon={<BellIcon />}
                 aria-label="Activer les notifications"
+                onClick={() => handleEventStatus(event.id, "interested")}
               />
             </Tooltip>
           </>
@@ -112,7 +121,7 @@ function EventCard({ event }) {
 
 EventCard.propTypes = {
   event: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.oneOf([PropTypes.number, PropTypes.string]).isRequired,
     title: PropTypes.string,
     location_name: PropTypes.string,
     poster_image: PropTypes.string,

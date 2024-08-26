@@ -150,7 +150,8 @@ class EventRepository extends AbstractRepository {
         e.start_date, 
         e.end_date, 
         e.start_time, 
-        e.id, 
+        e.id,
+        e.poster_image,
         l.name 
       FROM ${this.table} as e 
       JOIN Event_Save AS es ON e.id = es.event_id 
