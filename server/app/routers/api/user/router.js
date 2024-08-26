@@ -7,9 +7,10 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
+const validateUser = require("../../../services/userValidation");
 const { read, add } = require("../../../controllers/userActions");
 
-router.post("/", add);
+router.post("/", validateUser, add);
 router.post("/login", read);
 
 /* ************************************************************************* */

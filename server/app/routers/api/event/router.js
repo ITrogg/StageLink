@@ -13,11 +13,12 @@ const {
   edit,
   add,
 } = require("../../../controllers/eventActions");
+const validateEvent = require("../../../services/eventValidation");
 
 router.get("/", browse);
 router.get("/:id", read);
 router.put("/:id", edit);
-router.post("/", add);
+router.post("/", validateEvent, add);
 /* ************************************************************************* */
 
 module.exports = router;

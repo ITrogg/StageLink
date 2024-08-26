@@ -4,7 +4,6 @@ CREATE TABLE `User` (
   `email` varchar(255) NOT NULL UNIQUE,
   `password` varchar(255) NOT NULL,
   `profile_image` varchar(255) NOT NULL DEFAULT 'default_profile_image_url',
-  `preferred_streaming_platform` ENUM ('Spotify', 'Deezer', 'YouTube', 'Bandcamp', 'AppleMusic', 'AmazonMusic') NOT NULL DEFAULT 'YouTube',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
