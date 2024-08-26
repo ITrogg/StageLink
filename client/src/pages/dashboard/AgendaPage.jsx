@@ -1,5 +1,7 @@
+import EventCalendar from "../../components/dashboard/EventCalendar";
+
 function AgendaPage() {
-  return <p>AgendaPage</p>;
+  return <EventCalendar />;
 }
 
 export default AgendaPage;
