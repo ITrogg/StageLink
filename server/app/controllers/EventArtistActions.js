@@ -11,8 +11,9 @@ const add = async (req, res, next) => {
 };
 
 const destroy = async (req, res, next) => {
+  const { eventId, artistId } = req.params;
   try {
-    const rowsAffected = await tables.EventArtist.delete(req.params.id);
+    const rowsAffected = await tables.EventArtist.delete(eventId, artistId);
     res.status(200).json(rowsAffected);
   } catch (err) {
     next(err);

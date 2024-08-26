@@ -13,10 +13,10 @@ class EventArtistRepository extends AbstractRepository {
     return result.insertId;
   }
 
-  async delete(id) {
+  async delete(eventId, artistId) {
     const [result] = await this.database.query(
-      `DELETE FROM ${this.table} WHERE id =?`,
-      [id]
+      `DELETE FROM ${this.table} WHERE event_id =? AND artist_id = ?`,
+      [eventId, artistId]
     );
     return result.affectedRows;
   }

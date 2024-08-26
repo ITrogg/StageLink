@@ -2,7 +2,7 @@
 const tables = require("../../database/tables");
 
 const browse = async (req, res, next) => {
-  const { type, locationId, artistId } = req.query;
+  const { type, locationId, artistId, userId } = req.query;
   try {
     switch (type) {
       case "futurByLocation": {
@@ -22,6 +22,11 @@ const browse = async (req, res, next) => {
       }
       case "pastByArtist": {
         const events = await tables.Event.readPastByArtist(artistId);
+        res.status(200).json(events);
+        break;
+      }
+      case "byUser": {
+        const events = await tables.Event.readbyUser(userId);
         res.status(200).json(events);
         break;
       }

@@ -142,6 +142,25 @@ class EventRepository extends AbstractRepository {
     return rows;
   }
 
+  async readbyUser(userId) {
+    const [rows] = await this.database.query(
+      `SELECT 
+        es.status, 
+        e.title, 
+        e.start_date, 
+        e.end_date, 
+        e.start_time, 
+        e.id, 
+        l.name 
+      FROM ${this.table} as e 
+      JOIN Event_Save AS es ON e.id = es.event_id 
+      JOIN location AS l ON l.id = e.location_id
+      WHERE es.user_id = ? `,
+      [userId]
+    );
+    return rows;
+  }
+
   async read(id) {
     const [rows] = await this.database.query(
       `SELECT

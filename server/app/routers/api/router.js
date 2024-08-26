@@ -25,6 +25,10 @@ const eventArtistsRouter = require("./eventArtist/router");
 
 router.use("/eventArtist", eventArtistsRouter);
 
+const eventSaveRouter = require("./eventSave/router");
+
+router.use("/eventSave", eventSaveRouter);
+
 const genreTagsRouter = require("./genreTag/router");
 
 router.use("/genreTag", genreTagsRouter);
