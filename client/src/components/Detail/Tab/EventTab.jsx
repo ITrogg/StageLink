@@ -8,12 +8,10 @@ function EventTab({ pastEvents, futureEvents }) {
       <Heading as="h2" size="lg" mb={4}>
         Concerts à venir
       </Heading>
-      <Flex wrap="wrap" gap={4}>
+      <Flex p={12} wrap="wrap" gap={12}>
         {futureEvents.length > 0 ? (
           futureEvents.map((event) => (
-            <Box key={event.id} flex="1 1 200px">
-              <EventCard event={event} />
-            </Box>
+            <EventCard key={event.id} event={event} />
           ))
         ) : (
           <Text>Aucun événement futur</Text>
@@ -23,13 +21,9 @@ function EventTab({ pastEvents, futureEvents }) {
       <Heading as="h2" size="lg" mt={8} mb={4}>
         Concerts passés
       </Heading>
-      <Flex wrap="wrap" gap={4}>
+      <Flex p={12} wrap="wrap" gap={12}>
         {pastEvents.length > 0 ? (
-          pastEvents.map((event) => (
-            <Box key={event.id} flex="1 1 200px">
-              <EventCard event={event} />
-            </Box>
-          ))
+          pastEvents.map((event) => <EventCard key={event.id} event={event} />)
         ) : (
           <Text>Aucun événement passé</Text>
         )}

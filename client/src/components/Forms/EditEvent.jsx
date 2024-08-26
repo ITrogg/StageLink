@@ -192,7 +192,7 @@ function AddEventForm({ event, onClose }) {
         </FormControl>
       </ModalBody>
       <ModalFooter>
-        <Button colorScheme="blue" mt={4} onClick={handleSubmit}>
+        <Button colorScheme="blue" mr={6} onClick={handleSubmit}>
           Mettre à jour l'événement
         </Button>
         <Button onClick={onClose}>Annuler</Button>

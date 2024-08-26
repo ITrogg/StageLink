@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import { Box, Link, Text } from "@chakra-ui/react";
 
-function LinkCard({ links }) {
-  // Vérifie si links est défini et s'il n'est pas vide
+function LinksCard({ links }) {
   const hasLinks = Array.isArray(links) && links.length > 0;
 
   return (
@@ -33,7 +32,7 @@ function LinkCard({ links }) {
 }
 
 // Définir les PropTypes
-LinkCard.propTypes = {
+LinksCard.propTypes = {
   links: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -42,4 +41,4 @@ LinkCard.propTypes = {
   ).isRequired,
 };
 
-export default LinkCard;
+export default LinksCard;

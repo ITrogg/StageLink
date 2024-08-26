@@ -1,41 +1,18 @@
-import { Box, Text, Link, VStack, HStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 
 function Footer() {
   return (
     <Box bg="black" color="white" py={8}>
-      <VStack spacing={4}>
+      <VStack spacing={4} align="center">
         <Text fontSize="lg" fontWeight="bold">
-          Mon Application
+          StageLink
         </Text>
-        <Text fontSize="sm">
-          © 2024 Mon Application. Tous droits réservés.
+        <Text fontSize="sm" textAlign="center">
+          © 2024 StageLink. Tous droits réservés.
+          <br />
+          Si tu cherches quelque chose et que tu ne le trouves pas ici, c'est
+          probablement parce qu'on a oublié de le mettre...
         </Text>
-        <HStack spacing={4}>
-          <Link
-            href="/mentions-legales"
-            fontSize="sm"
-            color="gray.400"
-            _hover={{ color: "white" }}
-          >
-            Mentions Légales
-          </Link>
-          <Link
-            href="/politique-confidentialite"
-            fontSize="sm"
-            color="gray.400"
-            _hover={{ color: "white" }}
-          >
-            Politique de Confidentialité
-          </Link>
-          <Link
-            href="/contact"
-            fontSize="sm"
-            color="gray.400"
-            _hover={{ color: "white" }}
-          >
-            Contact
-          </Link>
-        </HStack>
       </VStack>
     </Box>
   );

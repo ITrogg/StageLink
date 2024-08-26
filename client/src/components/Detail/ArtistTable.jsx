@@ -1,23 +1,45 @@
 import PropTypes from "prop-types";
-import { Table, Thead, Tbody, Tr, Th } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Box } from "@chakra-ui/react";
 import ArtistRow from "./ArtistRow";
 
 function ArtistTable({ artists }) {
   return (
-    <Table variant="simple">
-      <Thead>
-        <Tr>
-          <Th>Nom</Th>
-          <Th>Genre</Th>
-          <Th>Evenements A venir</Th>
-        </Tr>
-      </Thead>
-      <Tbody>
-        {artists.map((artist) => (
-          <ArtistRow key={artist.id} artist={artist} />
-        ))}
-      </Tbody>
-    </Table>
+    <Box overflowX="auto" mb={8}>
+      <Table variant="simple" size="sm">
+        {" "}
+        {/* Taille du texte réduite */}
+        <Thead>
+          <Tr>
+            <Th
+              fontSize={{ base: "sm", md: "lg" }}
+              fontWeight="bold"
+              width="50%"
+            >
+              Nom
+            </Th>
+            <Th
+              fontSize={{ base: "sm", md: "lg" }}
+              fontWeight="bold"
+              width="30%"
+            >
+              Genre
+            </Th>
+            <Th
+              fontSize={{ base: "sm", md: "lg" }}
+              fontWeight="bold"
+              width="20%"
+            >
+              Événements
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {artists.map((artist) => (
+            <ArtistRow key={artist.id} artist={artist} />
+          ))}
+        </Tbody>
+      </Table>
+    </Box>
   );
 }
 

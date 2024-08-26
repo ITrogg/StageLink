@@ -12,23 +12,27 @@ function InputComponent({
 }) {
   return (
     <FormControl id={id} isRequired={isRequired}>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel htmlFor={id}>{label}</FormLabel>
       <Input
         name={id}
         type={type}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        borderColor="gray.900"
+        borderColor="gray.800"
+        bg="none"
         borderRadius="md"
-        _hover={{ borderColor: "red.600", boxShadow: "0 0 0 1px teal.500" }}
+        _hover={{
+          borderColor: "purple.200",
+        }}
         _focus={{
-          borderColor: "red.600",
+          borderColor: "purple.600",
           boxShadow: "none",
           outline: "none",
+          bg: "white",
         }}
         _placeholder={{ color: "gray.500" }}
-        size="lg"
+        size={{ base: "md", md: "lg" }}
       />
     </FormControl>
   );

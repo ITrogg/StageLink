@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Box, Spinner, Text } from "@chakra-ui/react";
+import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import ArtistTable from "../../components/Detail/ArtistTable";
-import ArtistFilters from "../../components/Forms/Search/ArtistFilters";
+import ArtistFilters from "../../components/Forms/ArtistFilters";
 
 import connexion from "../../services/connexion";
 
@@ -54,13 +54,19 @@ function ArtistList() {
   }
 
   return (
-    <Box>
+    <Box margin="auto" w={{ base: "100vw", md: "75vw" }}>
+      <Heading as="h1" size="2xl" textAlign="center">
+        Rechercher un artiste
+      </Heading>
       <ArtistFilters
         nameFilter={nameFilter}
         setNameFilter={setNameFilter}
         genreFilter={genreFilter}
         setGenreFilter={setGenreFilter}
       />
+      <Heading as="h2" size="lg" mt={8} mb={4} textAlign="center">
+        Liste des artistes
+      </Heading>
       <ArtistTable artists={filteredArtists} />
     </Box>
   );

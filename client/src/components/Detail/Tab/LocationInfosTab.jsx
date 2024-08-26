@@ -13,7 +13,7 @@ function LocationInfosTab({ location }) {
 
   return (
     <Box p={4} bg="white" borderRadius="md" boxShadow="md">
-      <VStack spacing={4} align="start">
+      <VStack spacing={4} align="center">
         <Text fontSize="2xl" fontWeight="bold">
           {location.name}
         </Text>

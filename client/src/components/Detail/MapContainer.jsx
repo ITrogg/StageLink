@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { Text, VStack, Spinner, Flex } from "@chakra-ui/react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
@@ -11,22 +11,11 @@ function ListLocation() {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserPosition([
-            position.coords.latitude,
-            position.coords.longitude,
-          ]);
-        },
-        (error) => {
-          console.error("Error getting user position:", error);
-          // Fallback to a default position if geolocation fails
-          setUserPosition([50.595729, 3.4809]);
-        }
-      );
+      navigator.geolocation.getCurrentPosition((position) => {
+        setUserPosition([position.coords.latitude, position.coords.longitude]);
+      });
     } else {
-      // If geolocation is not supported, fallback to a default position
-      setUserPosition([50.595729, 3.4809]);
+      setUserPosition([50.595729, 3.4809]); // Fallback position
     }
   }, []);
 
@@ -59,7 +48,14 @@ function ListLocation() {
         >
           <Popup>
             <VStack spacing={2} align="start">
-              <Text fontWeight="bold">{location.name}</Text>
+              <Text fontWeight="bold">
+                <Link
+                  to={`/salles/${location.id}`}
+                  style={{ textDecoration: "underline" }}
+                >
+                  {location.name}
+                </Link>
+              </Text>
               <Text>{location.events} événements</Text>
             </VStack>
           </Popup>

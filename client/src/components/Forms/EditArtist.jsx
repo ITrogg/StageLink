@@ -7,6 +7,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalCloseButton,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
@@ -75,6 +76,18 @@ function EditArtist({ onClose, artist, genreTags }) {
       <ModalHeader>Modifier les informations de l'artiste</ModalHeader>
       <ModalCloseButton />
       <ModalBody>
+        <SelectMultiple
+          id="tags"
+          label="Ajouter des tags"
+          placeholder="genre"
+          selectedItemIds={tagsIds}
+          setSelectedItemIds={setTagsIds}
+          url="api/genreTag"
+          queryForTags=""
+          queryForInput=""
+          displayedValue={tagsNames}
+          setDisplayedValue={setTagsNames}
+        />
         <InputComponent
           id="logo"
           label="Logo"
@@ -96,124 +109,132 @@ function EditArtist({ onClose, artist, genreTags }) {
           }
           isRequired
         />
-        <SelectMultiple
-          id="tags"
-          label="Ajouter des tags"
-          placeholder="genre"
-          selectedItemIds={tagsIds}
-          setSelectedItemIds={setTagsIds}
-          url="api/genreTag"
-          queryForTags=""
-          queryForInput=""
-          displayedValue={tagsNames}
-          setDisplayedValue={setTagsNames}
-        />
-        <InputComponent
-          id="facebook_link"
-          label="Lien Facebook"
-          type="text"
-          placeholder="Lien Facebook"
-          value={formData.facebook_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, facebook_link: value }))
-          }
-        />
-        <InputComponent
-          id="twitter_link"
-          label="Lien Twitter"
-          type="text"
-          placeholder="Lien Twitter"
-          value={formData.twitter_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, twitter_link: value }))
-          }
-        />
-        <InputComponent
-          id="instagram_link"
-          label="Lien Instagram"
-          type="text"
-          placeholder="Lien Instagram"
-          value={formData.instagram_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, instagram_link: value }))
-          }
-        />
-        <InputComponent
-          id="website"
-          label="Site web"
-          type="text"
-          placeholder="Site web"
-          value={formData.website}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, website: value }))
-          }
-        />
-        <InputComponent
-          id="youtube_link"
-          label="Lien YouTube"
-          type="text"
-          placeholder="Lien YouTube"
-          value={formData.youtube_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, youtube_link: value }))
-          }
-        />
-        <InputComponent
-          id="bandcamp_link"
-          label="Lien Bandcamp"
-          type="text"
-          placeholder="Lien Bandcamp"
-          value={formData.bandcamp_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, bandcamp_link: value }))
-          }
-        />
-        <InputComponent
-          id="spotify_link"
-          label="Lien Spotify"
-          type="text"
-          placeholder="Lien Spotify"
-          value={formData.spotify_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, spotify_link: value }))
-          }
-        />
-        <InputComponent
-          id="deezer_link"
-          label="Lien Deezer"
-          type="text"
-          placeholder="Lien Deezer"
-          value={formData.deezer_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({ ...prevData, deezer_link: value }))
-          }
-        />
-        <InputComponent
-          id="apple_music_link"
-          label="Lien Apple Music"
-          type="text"
-          placeholder="Lien Apple Music"
-          value={formData.apple_music_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({
-              ...prevData,
-              apple_music_link: value,
-            }))
-          }
-        />
-        <InputComponent
-          id="amazon_music_link"
-          label="Lien Amazon Music"
-          type="text"
-          placeholder="Lien Amazon Music"
-          value={formData.amazon_music_link}
-          setValue={(value) =>
-            setFormData((prevData) => ({
-              ...prevData,
-              amazon_music_link: value,
-            }))
-          }
-        />
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+          <InputComponent
+            id="facebook_link"
+            label="Lien Facebook"
+            type="text"
+            placeholder="Lien Facebook"
+            value={formData.facebook_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                facebook_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="twitter_link"
+            label="Lien Twitter"
+            type="text"
+            placeholder="Lien Twitter"
+            value={formData.twitter_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                twitter_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="instagram_link"
+            label="Lien Instagram"
+            type="text"
+            placeholder="Lien Instagram"
+            value={formData.instagram_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                instagram_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="website"
+            label="Site web"
+            type="text"
+            placeholder="Site web"
+            value={formData.website}
+            setValue={(value) =>
+              setFormData((prevData) => ({ ...prevData, website: value }))
+            }
+          />
+          <InputComponent
+            id="youtube_link"
+            label="Lien YouTube"
+            type="text"
+            placeholder="Lien YouTube"
+            value={formData.youtube_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                youtube_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="bandcamp_link"
+            label="Lien Bandcamp"
+            type="text"
+            placeholder="Lien Bandcamp"
+            value={formData.bandcamp_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                bandcamp_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="spotify_link"
+            label="Lien Spotify"
+            type="text"
+            placeholder="Lien Spotify"
+            value={formData.spotify_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                spotify_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="deezer_link"
+            label="Lien Deezer"
+            type="text"
+            placeholder="Lien Deezer"
+            value={formData.deezer_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({ ...prevData, deezer_link: value }))
+            }
+          />
+          <InputComponent
+            id="apple_music_link"
+            label="Lien Apple Music"
+            type="text"
+            placeholder="Lien Apple Music"
+            value={formData.apple_music_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                apple_music_link: value,
+              }))
+            }
+          />
+          <InputComponent
+            id="amazon_music_link"
+            label="Lien Amazon Music"
+            type="text"
+            placeholder="Lien Amazon Music"
+            value={formData.amazon_music_link}
+            setValue={(value) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                amazon_music_link: value,
+              }))
+            }
+          />
+        </SimpleGrid>
       </ModalBody>
       <ModalFooter>
         <Button colorScheme="blue" mr={3} onClick={handleSubmit}>

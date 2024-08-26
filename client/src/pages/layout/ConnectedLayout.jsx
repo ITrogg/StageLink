@@ -10,14 +10,21 @@ function ConnectedLayout() {
     return <Navigate to="/welcome" />;
   }
   return (
-    <Flex direction="column" minH="100vh">
+    <Flex bg="gray.100" direction="column" minH="95vh">
       <Box
         alignSelf="end"
         m={2}
         display={location.pathname === "/evenements/nouveau" ? "none" : "block"}
       >
         <Link to="/evenements/nouveau">
-          <Text as={Button}>Ajouter un évenement</Text>
+          <Text
+            color="white"
+            as={Button}
+            bg="green.400"
+            _hover={{ bg: "green.500" }}
+          >
+            Ajouter un évenement
+          </Text>
         </Link>
       </Box>
       <Box flex="1">

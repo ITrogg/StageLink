@@ -7,6 +7,7 @@ import { AuthProvider } from "./services/AuthContext";
 
 import Welcome from "./pages/Welcome";
 import App from "./App";
+import Home from "./pages/explore/Home";
 import ConnectedLayout from "./pages/layout/ConnectedLayout";
 import ListArtist from "./pages/explore/ListArtist";
 import DetailArtist from "./pages/explore/DetailArtist";
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
         path: "",
         element: <ConnectedLayout />,
         children: [
+          {
+            path: "/",
+            element: <Home />,
+          },
           {
             path: "artistes",
             element: <ListArtist />,

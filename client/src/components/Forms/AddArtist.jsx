@@ -43,7 +43,6 @@ function AddArtist({ onArtistAdded }) {
           setValue={setName}
           isRequired
         />
-
         <SelectComponent
           id="country"
           url="/api/country"
@@ -53,7 +52,6 @@ function AddArtist({ onArtistAdded }) {
           placeholder="Sélectionner un pays"
           isRequired
         />
-
         <InputComponent
           id="genre"
           label="Genre"
@@ -63,15 +61,15 @@ function AddArtist({ onArtistAdded }) {
           setValue={setGenre}
           isRequired
         />
-
-        <Button
-          width={{ base: "50%", md: "25%" }}
-          colorScheme="blue"
-          onClick={handleSubmit}
-        >
-          Ajouter l'artiste
-        </Button>
       </Flex>
+      <Button
+        mt={6}
+        width={{ base: "50%", md: "25%" }}
+        colorScheme="blue"
+        onClick={handleSubmit}
+      >
+        Ajouter l'artiste
+      </Button>
     </Box>
   );
 }

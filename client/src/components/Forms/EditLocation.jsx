@@ -53,7 +53,6 @@ function EditLocation({ onClose, location }) {
           setValue={(value) =>
             setFormData((prevData) => ({ ...prevData, capacity: value }))
           }
-          isRequired
         />
         <InputComponent
           id="facebook_link"

@@ -7,6 +7,7 @@ import {
   IconButton,
   useDisclosure,
   Image,
+  Text,
 } from "@chakra-ui/react";
 
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -36,11 +37,14 @@ function NavbarExplore() {
   return (
     <Box bg="black" px={4}>
       <Flex h={16} alignItems="center" justifyContent="space-between">
-        <Box>
-          <Link to="/">
+        <Link to="/">
+          <Flex flexDirection="row">
+            <Text fontSize="2xl" color="white">
+              StageLink
+            </Text>
             <Image src={logo} alt="Logo" height="40px" />
-          </Link>
-        </Box>
+          </Flex>
+        </Link>
         {/* Menu desktop */}
         <Flex
           alignItems="center"

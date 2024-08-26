@@ -4,7 +4,7 @@ import LinksCard from "../LinksCard";
 
 function ArtistInfosTab({ artist, genreTags }) {
   // Format genreTags from array of objects to array of strings
-  const genres = genreTags.map((tag) => tag.label);
+  const tags = genreTags.map((tag) => tag.label);
 
   // Extract links that are not null
   const links = [
@@ -24,12 +24,12 @@ function ArtistInfosTab({ artist, genreTags }) {
       <Heading as="h2" size="lg" mb={4}>
         Infos sur l'artiste
       </Heading>
-      <VStack spacing={4} align="start">
-        <Text>
-          <strong>Nom:</strong> {artist.name}
+      <VStack spacing={4} align="center">
+        <Text fontSize="lg">
+          <strong>Genre:</strong> {artist.genre}
         </Text>
-        <Text>
-          <strong>Genre:</strong> {genres.join(", ")}
+        <Text fontSize="lg">
+          <strong>Tags:</strong> {tags.join(", ")}
         </Text>
         <LinksCard links={links} />
       </VStack>
@@ -40,6 +40,7 @@ function ArtistInfosTab({ artist, genreTags }) {
 ArtistInfosTab.propTypes = {
   artist: PropTypes.shape({
     name: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
     amazon_music_link: PropTypes.string,
     apple_music_link: PropTypes.string,
     bandcamp_link: PropTypes.string,

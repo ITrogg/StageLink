@@ -24,7 +24,7 @@ function Welcome() {
       <Heading
         as="h1"
         size="2xl"
-        color="teal"
+        color="red.600"
         textAlign={{ base: "center", md: "left" }}
         flex="1"
       >
@@ -33,7 +33,7 @@ function Welcome() {
       <Flex
         flexDirection="column"
         justifyContent="space-between"
-        bg="blue.50"
+        bg="gray.200"
         p={8}
         borderRadius="md"
         color="black"

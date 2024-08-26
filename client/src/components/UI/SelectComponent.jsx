@@ -28,16 +28,16 @@ function SelectComponent({
 
   return (
     <FormControl id={id} isRequired={isRequired}>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel htmlFor={id}>{label}</FormLabel>
       <Select
         name={id}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        bg="white"
-        borderColor="gray.300"
-        _focus={{ borderColor: "blue.500" }}
-        size="lg"
+        bg="none"
+        borderColor="grey.800"
+        _focus={{ borderColor: "pink.500", boxShadow: "0 0 0 1px pink.500" }}
+        size={{ base: "md", md: "lg" }}
       >
         {options.map((option) => (
           <option key={option.id} value={option.id}>

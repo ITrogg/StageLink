@@ -5,7 +5,13 @@ function DetailHeader({ title, imageUrl }) {
   return (
     <Box textAlign="center" mb={6}>
       {imageUrl && (
-        <Image src={imageUrl} alt={title} borderRadius="md" mb={4} />
+        <Image
+          src={imageUrl}
+          alt={title}
+          borderRadius="md"
+          mb={4}
+          maxW="100%"
+        />
       )}
       <Heading as="h1" size="xl" mb={2}>
         {title}

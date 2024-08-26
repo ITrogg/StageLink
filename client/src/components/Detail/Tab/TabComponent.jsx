@@ -4,8 +4,8 @@ import EventTab from "./EventTab";
 
 function TabComponent({ infos, pastEvents, futureEvents }) {
   return (
-    <Tabs variant="enclosed">
-      <TabList>
+    <Tabs bg="white" isFitted size="lg" variant="enclosed" mt={6}>
+      <TabList mb="1em">
         <Tab>Information</Tab>
         <Tab>Concerts</Tab>
       </TabList>

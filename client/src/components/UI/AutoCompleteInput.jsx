@@ -41,23 +41,24 @@ function AutoCompleteInput({
 
   return (
     <FormControl id={id} isRequired={isRequired}>
-      <FormLabel>{label}</FormLabel>
+      <FormLabel htmlFor={id}>{label}</FormLabel>
       <Input
         name={id}
         list={`autocomplete-list-${id}`}
         value={displayedValue}
         onChange={handleOptionSelect}
         placeholder={placeholder}
-        bg="white"
-        borderColor="gray.300"
-        _hover={{ borderColor: "blue.500", boxShadow: "0 0 0 1px blue.500" }}
+        bg="none"
+        borderColor="grey.800"
+        _hover={{ borderColor: "pink.200", boxShadow: "0 0 0 1px pink.400" }}
         _focus={{
-          borderColor: "blue.500",
+          borderColor: "pink.500",
           boxShadow: "none",
           outline: "none",
+          bg: "white",
         }}
         _placeholder={{ color: "gray.500" }}
-        size="lg"
+        size={{ base: "md", md: "lg" }}
       />
       <datalist id={`autocomplete-list-${id}`}>
         {options.map((option) => (

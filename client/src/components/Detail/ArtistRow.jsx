@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 
 function ArtistRow({ artist }) {
   return (
-    <Tr _hover={{ backgroundColor: "gray.100" }} cursor="pointer">
-      <Td>
+    <Tr
+      _hover={{ backgroundColor: "gray.200" }}
+      cursor="pointer"
+      borderBottom="1px solid #A0AEC0" // Ligne de séparation plus foncée
+    >
+      <Td fontSize={{ base: "sm", md: "md" }}>
+        {" "}
+        {/* Taille du texte réduite */}
         <Box
           as={Link}
           to={`/artistes/${artist.id}`}
@@ -16,7 +22,9 @@ function ArtistRow({ artist }) {
           {artist.name}
         </Box>
       </Td>
-      <Td>
+      <Td fontSize={{ base: "sm", md: "md" }}>
+        {" "}
+        {/* Taille du texte réduite */}
         <Box
           as={Link}
           to={`/artistes/${artist.id}`}
@@ -27,7 +35,9 @@ function ArtistRow({ artist }) {
           {artist.genre}
         </Box>
       </Td>
-      <Td>
+      <Td fontSize={{ base: "sm", md: "md" }}>
+        {" "}
+        {/* Taille du texte réduite */}
         <Box
           as={Link}
           to={`/artistes/${artist.id}`}

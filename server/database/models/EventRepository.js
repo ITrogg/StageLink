@@ -31,6 +31,7 @@ class EventRepository extends AbstractRepository {
     const [rows] = await this.database.query(`
       SELECT 
         e.id,
+        e.title,
         e.start_date,
         l.name AS location_name,
         e.poster_image
@@ -49,6 +50,7 @@ class EventRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT 
         e.id,
+        e.title,
         e.start_date,
         l.name AS location_name,
         e.poster_image
@@ -71,6 +73,7 @@ class EventRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT 
         e.id,
+        e.title,
         e.start_date,
         l.name AS location_name,
         e.poster_image
@@ -93,6 +96,7 @@ class EventRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT 
         e.id,
+        e.title,
         e.start_date,
         l.name AS location_name,
         e.poster_image
@@ -117,6 +121,7 @@ class EventRepository extends AbstractRepository {
     const [rows] = await this.database.query(
       `SELECT 
         e.id,
+        e.title,
         e.start_date,
         l.name AS location_name,
         e.poster_image

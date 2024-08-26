@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import {
-  VStack,
   HStack,
-  Button,
   Tag,
   TagLabel,
   TagCloseButton,
+  IconButton,
 } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 import PropTypes from "prop-types";
 import AutoCompleteInput from "./AutoCompleteInput";
 import connexion from "../../services/connexion";
@@ -77,7 +77,7 @@ function SelectMultiple({
 
   return (
     <>
-      <HStack spacing={2} mt={4}>
+      <HStack spacing={2} mt={4} alignItems="end">
         <AutoCompleteInput
           id={`${id}_input`}
           label={label}
@@ -85,29 +85,33 @@ function SelectMultiple({
           placeholder={placeholder}
           url={url}
           query={queryForInput}
-          isRequired
           displayedValue={displayedValue}
           setDisplayedValue={setDisplayedValue}
         />
-        <Button onClick={handleAddItem} colorScheme="teal">
-          +
-        </Button>
+        <IconButton
+          icon={<AddIcon />}
+          colorScheme="purple"
+          aria-label="Ajouter"
+          onClick={handleAddItem}
+          height={{ base: "2.5rem", md: "3rem" }}
+          width={{ base: "2.5rem", md: "3rem" }}
+        />
       </HStack>
 
-      <VStack spacing={2} align="start">
+      <HStack spacing={2} mt={4} align="start" wrap="wrap">
         {selectedItems.map((item) => (
           <Tag
             size="lg"
             key={item.id}
             borderRadius="full"
             variant="solid"
-            colorScheme="teal"
+            colorScheme="pink"
           >
             <TagLabel>{item.label}</TagLabel>
             <TagCloseButton onClick={() => handleRemoveItem(item.id)} />
           </Tag>
         ))}
-      </VStack>
+      </HStack>
     </>
   );
 }
