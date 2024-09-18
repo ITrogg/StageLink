@@ -9,7 +9,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import PropTypes from "prop-types";
 import AutoCompleteInput from "./AutoCompleteInput";
-import connexion from "../../services/connexion";
+import connexion from "../../../services/connexion";
 
 function SelectMultiple({
   id,

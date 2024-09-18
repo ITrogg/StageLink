@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { LoadScript, Autocomplete } from "@react-google-maps/api";
 import PropTypes from "prop-types";
 import { Box, Button, VStack, Heading, Text } from "@chakra-ui/react";
-import InputComponent from "../UI/InputComponent";
+import InputComponent from "./Inputs/InputComponent";
 
 import connexion from "../../services/connexion";
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Heading, Flex } from "@chakra-ui/react";
-import InputComponent from "../UI/InputComponent";
-import SelectComponent from "../UI/SelectComponent";
+import InputComponent from "./Inputs/InputComponent";
+import SelectComponent from "./Inputs/SelectComponent";
 
 import connexion from "../../services/connexion";
 

@@ -17,13 +17,13 @@ import {
   useBreakpointValue,
   Textarea, // Import du composant Textarea de Chakra UI
 } from "@chakra-ui/react";
-import InputComponent from "../../components/UI/InputComponent";
-import MultipleAutoCompleteInput from "../../components/UI/MultipleAutoCompleteInput";
+import InputComponent from "../../components/Forms/Inputs/InputComponent";
+import MultipleAutoCompleteInput from "../../components/Forms/Inputs/MultipleAutoCompleteInput";
 import AddArtist from "../../components/Forms/AddArtist";
 import AddLocation from "../../components/Forms/AddLocation";
 import connexion from "../../services/connexion";
 import { AuthContext } from "../../services/AuthContext";
-import AutoCompleteInput from "../../components/UI/AutoCompleteInput";
+import AutoCompleteInput from "../../components/Forms/Inputs/AutoCompleteInput";
 
 function AddEventForm() {
   const [title, setTitle] = useState("");

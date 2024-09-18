@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Box, Heading, Flex } from "@chakra-ui/react";
 import EventCard from "../../components/Detail/EventCard";
-import Input from "../../components/UI/InputComponent";
+import Input from "../../components/Forms/Inputs/InputComponent";
 
 function EventList() {
   const events = useLoaderData();

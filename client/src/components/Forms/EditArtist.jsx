@@ -11,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
-import InputComponent from "../UI/InputComponent"; // Assure-toi que ce chemin est correct
+import InputComponent from "./Inputs/InputComponent"; // Assure-toi que ce chemin est correct
 import connexion from "../../services/connexion";
-import SelectMultiple from "../UI/MultipleAutoCompleteInput";
+import SelectMultiple from "./Inputs/MultipleAutoCompleteInput";
 
 function EditArtist({ onClose, artist, genreTags }) {
   const [formData, setFormData] = useState({
