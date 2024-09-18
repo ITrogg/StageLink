@@ -11,7 +11,7 @@ function ListLocation() {
       height="75vh"
     >
       <Heading as="h1" mb={6}>
-        Liste des Emplacements
+        Liste des Salles
       </Heading>
       <MapContainer />
     </Flex>
