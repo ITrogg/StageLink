@@ -20,7 +20,6 @@ import {
 import InputComponent from "../../components/Forms/Inputs/InputComponent";
 import MultipleAutoCompleteInput from "../../components/Forms/Inputs/MultipleAutoCompleteInput";
 import AddArtist from "../../components/Forms/AddArtist";
-import AddLocation from "../../components/Forms/AddLocation";
 import connexion from "../../services/connexion";
 import { AuthContext } from "../../services/AuthContext";
 import AutoCompleteInput from "../../components/Forms/Inputs/AutoCompleteInput";
@@ -50,11 +49,6 @@ function AddEventForm() {
 
   const handleAddArtist = (artist) => {
     setArtistIds((prevIds) => [...prevIds, artist]);
-  };
-
-  const handleAddLocation = (newLocationId, locationName) => {
-    setLocationId(newLocationId);
-    setDisplayedLocation(locationName);
   };
 
   const handleSubmit = async () => {
@@ -186,19 +180,6 @@ function AddEventForm() {
               displayedValue={displayedLocation}
               setDisplayedValue={setDisplayedLocation}
             />
-            <Accordion allowToggle mt={4}>
-              <AccordionItem>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    Ajouter une salle
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel>
-                  <AddLocation onLocationAdded={handleAddLocation} />
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
           </FormControl>
         </Box>
 
