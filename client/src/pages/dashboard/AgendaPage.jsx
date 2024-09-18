@@ -42,17 +42,12 @@ function AgendaPage() {
 
   return (
     <Box>
-      <Box>
-        <EventCalendar
-          events={events}
-          onEventClick={(event) => setSelectedEvent(event)}
-        />
-      </Box>
-      {selectedEvent && (
-        <Box>
-          <EventCard event={selectedEvent} />
-        </Box>
-      )}
+      <EventCalendar
+        events={events}
+        onEventClick={(event) => setSelectedEvent(event)}
+      />
+
+      {selectedEvent && <EventCard event={selectedEvent} />}
     </Box>
   );
 }

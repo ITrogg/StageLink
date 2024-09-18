@@ -16,10 +16,6 @@ import DetailLocation from "./pages/explore/DetailLocation";
 import ListEvent from "./pages/explore/ListEvent";
 import DetailEvent from "./pages/explore/DetailEvent";
 import DashboardLayout from "./pages/layout/DashboardLayout";
-import ProfilePage from "./pages/dashboard/ProfilePage";
-import AgendaPage from "./pages/dashboard/AgendaPage";
-import FavoritesPage from "./pages/dashboard/FavoritesPage";
-import FriendsPage from "./pages/dashboard/FriendsPage";
 import NewEvent from "./pages/explore/NewEvent";
 
 import connexion from "./services/connexion";
@@ -155,19 +151,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <ProfilePage />,
           },
           {
             path: "agenda",
-            element: <AgendaPage />,
           },
           {
             path: "favorites",
-            element: <FavoritesPage />,
           },
           {
             path: "friends",
-            element: <FriendsPage />,
           },
         ],
       },

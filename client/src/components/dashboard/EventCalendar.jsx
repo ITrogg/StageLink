@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
-import { Box } from "@chakra-ui/react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction"; // Pour les interactions
+import interactionPlugin from "@fullcalendar/interaction";
 
 function EventCalendar({ events, onEventClick }) {
   const handleEventClick = (info) => {
@@ -17,14 +16,12 @@ function EventCalendar({ events, onEventClick }) {
   };
 
   return (
-    <Box>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        events={events}
-        eventClick={handleEventClick}
-      />
-    </Box>
+    <FullCalendar
+      plugins={[dayGridPlugin, interactionPlugin]}
+      initialView="dayGridMonth"
+      events={events}
+      eventClick={handleEventClick}
+    />
   );
 }
 
