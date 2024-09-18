@@ -10,11 +10,11 @@ import App from "./App";
 import Home from "./pages/explore/Home";
 import ConnectedLayout from "./pages/layout/ConnectedLayout";
 import ListArtist from "./pages/explore/ListArtist";
-import DetailArtist from "./pages/explore/DetailArtist";
+import DetailArtist from "./pages/explore/DetailsPages/DetailArtist";
 import ListLocation from "./pages/explore/ListLocation";
-import DetailLocation from "./pages/explore/DetailLocation";
+import DetailLocation from "./pages/explore/DetailsPages/DetailLocation";
 import ListEvent from "./pages/explore/ListEvent";
-import DetailEvent from "./pages/explore/DetailEvent";
+import DetailEvent from "./pages/explore/DetailsPages/DetailEvent";
 import DashboardLayout from "./pages/layout/DashboardLayout";
 import NewEvent from "./pages/explore/NewEvent";
 
