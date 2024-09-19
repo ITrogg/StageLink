@@ -6,32 +6,32 @@ const browse = async (req, res, next) => {
   try {
     switch (type) {
       case "futurByLocation": {
-        const events = await tables.Event.readFuturByLocation(locationId);
+        const events = await tables.event.readFuturByLocation(locationId);
         res.status(200).json(events);
         break;
       }
       case "pastByLocation": {
-        const events = await tables.Event.readPastByLocation(locationId);
+        const events = await tables.event.readPastByLocation(locationId);
         res.status(200).json(events);
         break;
       }
       case "futurByArtist": {
-        const events = await tables.Event.readFuturByArtist(artistId);
+        const events = await tables.event.readFuturByArtist(artistId);
         res.status(200).json(events);
         break;
       }
       case "pastByArtist": {
-        const events = await tables.Event.readPastByArtist(artistId);
+        const events = await tables.event.readPastByArtist(artistId);
         res.status(200).json(events);
         break;
       }
       case "byUser": {
-        const events = await tables.Event.readbyUser(userId);
+        const events = await tables.event.readbyUser(userId);
         res.status(200).json(events);
         break;
       }
       default: {
-        const events = await tables.Event.readAll();
+        const events = await tables.event.readAll();
         res.status(200).json(events);
       }
     }
@@ -42,7 +42,7 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const event = await tables.Event.read(req.params.id);
+    const event = await tables.event.read(req.params.id);
     if (event == null) {
       res.sendStatus(404);
     } else {
@@ -57,7 +57,7 @@ const edit = async (req, res, next) => {
   try {
     const eventId = req.params.id;
     const event = req.body;
-    const rowsAffected = await tables.Event.update(eventId, event);
+    const rowsAffected = await tables.event.update(eventId, event);
 
     if (rowsAffected === 0) {
       res.status(404).json({ message: "Event not found" });
@@ -72,7 +72,7 @@ const edit = async (req, res, next) => {
 const add = async (req, res, next) => {
   try {
     const event = req.body;
-    const newEvent = await tables.Event.create(event);
+    const newEvent = await tables.event.create(event);
     res.status(200).json(newEvent);
   } catch (err) {
     next(err);

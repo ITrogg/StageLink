@@ -6,8 +6,6 @@ function ArtistTable({ artists }) {
   return (
     <Box overflowX="auto" mb={8}>
       <Table variant="simple" size="sm">
-        {" "}
-        {/* Taille du texte réduite */}
         <Thead>
           <Tr>
             <Th
@@ -46,10 +44,10 @@ function ArtistTable({ artists }) {
 ArtistTable.propTypes = {
   artists: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      genre: PropTypes.string.isRequired,
-      events: PropTypes.string.isRequired,
+      shortDesc: PropTypes.string.isRequired,
+      events: PropTypes.number.isRequired,
     })
   ).isRequired,
 };

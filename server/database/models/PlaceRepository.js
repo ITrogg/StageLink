@@ -1,22 +1,22 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class LocationRepository extends AbstractRepository {
+class PlaceRepository extends AbstractRepository {
   constructor() {
-    super({ table: "Location" });
+    super({ table: "place" });
   }
 
-  async create(location) {
+  async create(place) {
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (name, address, city, state, country, postal_code, latitude, longitude) VALUES (?,?,?,?,?,?,?,?)`,
       [
-        location.name,
-        location.address,
-        location.city,
-        location.state,
-        location.country,
-        location.postal_code,
-        location.latitude,
-        location.longitude,
+        place.name,
+        place.address,
+        place.city,
+        place.state,
+        place.country,
+        place.postal_code,
+        place.latitude,
+        place.longitude,
       ]
     );
     return result.insertId;
@@ -25,17 +25,18 @@ class LocationRepository extends AbstractRepository {
   async readAll() {
     const [rows] = await this.database.query(
       `SELECT 
-        l.id,
-        l.name,
-        l.latitude,
-        l.longitude,
+        p.id,
+        p.name,
+        p.logo,
+        p.latitude,
+        p.longitude,
         COUNT(e.id) AS events
       FROM 
-          ${this.table} AS l
+          ${this.table} AS p
       LEFT JOIN 
-          Event e ON l.id = e.location_id AND e.start_date >= CURDATE()
+          Event e ON p.id = e.place_id AND e.start_date >= CURDATE()
       GROUP BY 
-          l.id, l.name, l.latitude, l.longitude`
+          p.id, p.name, p.latitude, p.longitude`
     );
     return rows;
   }
@@ -61,13 +62,7 @@ class LocationRepository extends AbstractRepository {
         country,
         postal_code,
         capacity,
-        facebook_link,
-        twitter_link,
-        instagram_link,
-        website,
         logo,
-        year_opened,
-        is_closed,
         latitude,
         longitude
       FROM 
@@ -84,28 +79,12 @@ class LocationRepository extends AbstractRepository {
       `UPDATE ${this.table} 
        SET
         capacity = ?, 
-        facebook_link = ?, 
-        twitter_link = ?, 
-        instagram_link = ?, 
-        website = ?, 
         logo = ?, 
-        year_opened = ?, 
-        is_closed = ? 
        WHERE id = ?`,
-      [
-        location.capacity,
-        location.facebook_link,
-        location.twitter_link,
-        location.instagram_link,
-        location.website,
-        location.logo,
-        location.year_opened,
-        location.is_closed,
-        id,
-      ]
+      [location.capacity, location.logo, id]
     );
     return result.affectedRows;
   }
 }
 
-module.exports = LocationRepository;
+module.exports = PlaceRepository;

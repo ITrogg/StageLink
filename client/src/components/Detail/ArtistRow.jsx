@@ -7,11 +7,9 @@ function ArtistRow({ artist }) {
     <Tr
       _hover={{ backgroundColor: "gray.200" }}
       cursor="pointer"
-      borderBottom="1px solid #A0AEC0" // Ligne de séparation plus foncée
+      borderBottom="1px solid #A0AEC0"
     >
       <Td fontSize={{ base: "sm", md: "md" }}>
-        {" "}
-        {/* Taille du texte réduite */}
         <Box
           as={Link}
           to={`/artistes/${artist.id}`}
@@ -23,8 +21,6 @@ function ArtistRow({ artist }) {
         </Box>
       </Td>
       <Td fontSize={{ base: "sm", md: "md" }}>
-        {" "}
-        {/* Taille du texte réduite */}
         <Box
           as={Link}
           to={`/artistes/${artist.id}`}
@@ -32,12 +28,10 @@ function ArtistRow({ artist }) {
           height="100%"
           display="block"
         >
-          {artist.genre}
+          {artist.shortDesc}
         </Box>
       </Td>
       <Td fontSize={{ base: "sm", md: "md" }}>
-        {" "}
-        {/* Taille du texte réduite */}
         <Box
           as={Link}
           to={`/artistes/${artist.id}`}
@@ -56,7 +50,7 @@ ArtistRow.propTypes = {
   artist: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
+    shortDesc: PropTypes.string.isRequired,
     events: PropTypes.number.isRequired,
   }).isRequired,
 };

@@ -1,8 +1,8 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class GenreTagRepository extends AbstractRepository {
+class TagRepository extends AbstractRepository {
   constructor() {
-    super({ table: "Genre_Tag" });
+    super({ table: "tag" });
   }
 
   async readAll() {
@@ -12,7 +12,7 @@ class GenreTagRepository extends AbstractRepository {
 
   async readByArtist(artistId) {
     const [rows] = await this.database.query(
-      `SELECT gt.label, gt.id FROM ${this.table} AS gt JOIN Artist_Genre_Tag AS agt ON gt.id = agt.genre_tag_id WHERE agt.artist_id=?`,
+      `SELECT t.label, t.id FROM ${this.table} AS t JOIN artist_Tag AS a ON t.id = a.tag_id WHERE a.artist_id=?`,
       [artistId]
     );
     return rows;
@@ -35,4 +35,4 @@ class GenreTagRepository extends AbstractRepository {
   }
 }
 
-module.exports = GenreTagRepository;
+module.exports = TagRepository;

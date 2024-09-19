@@ -9,7 +9,7 @@ const validateEvent = (req, res, next) => {
     start_time: Joi.string()
       .regex(/^\d{2}:\d{2}:\d{2}$/)
       .optional(),
-    location_id: Joi.number().integer().required(),
+    place_id: Joi.number().integer().required(),
     created_by: Joi.number().integer().required(),
     poster_image: Joi.string().max(255).optional(),
     price_prevent: Joi.number().precision(2).optional(),
