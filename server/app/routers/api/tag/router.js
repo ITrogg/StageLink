@@ -7,16 +7,10 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const {
-  browse,
-  read,
-  edit,
-  add,
-} = require("../../../controllers/locationActions");
+const { browse, read, add } = require("../../../controllers/tagActions");
 
 router.get("/", browse);
 router.get("/:id", read);
-router.put("/:id", edit);
 router.post("/", add);
 
 /* ************************************************************************* */

@@ -2,19 +2,19 @@ const AbstractRepository = require("./AbstractRepository");
 
 class EventRepository extends AbstractRepository {
   constructor() {
-    super({ table: "Event" });
+    super({ table: "event" });
   }
 
   async create(event) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (title, description, start_date, end_date, start_time,location_id, created_by, poster_image, price_prevent, price_at_door, facebook_link, ticket_link, is_free) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      `INSERT INTO ${this.table} (title, description, start_date, end_date, start_time, place_id, created_by, poster_image, price_prevent, price_at_door, facebook_link, ticket_link, is_free) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
       [
         event.title,
         event.description,
         event.start_date,
         event.end_date,
         event.start_time,
-        event.location_id,
+        event.place_id,
         event.created_by,
         event.poster_image,
         event.price_prevent,
@@ -33,12 +33,12 @@ class EventRepository extends AbstractRepository {
         e.id,
         e.title,
         e.start_date,
-        l.name AS location_name,
+        p.name AS place_name,
         e.poster_image
       FROM 
           ${this.table} AS e
       JOIN 
-          Location AS l ON e.location_id = l.id
+          place AS p ON e.place_id = p.id
       WHERE 
           e.start_date >= CURDATE()
       ORDER BY 
@@ -46,48 +46,48 @@ class EventRepository extends AbstractRepository {
     return rows;
   }
 
-  async readFuturByLocation(locationId) {
+  async readFuturByLocation(placeId) {
     const [rows] = await this.database.query(
       `SELECT 
         e.id,
         e.title,
         e.start_date,
-        l.name AS location_name,
+        p.name AS place_name,
         e.poster_image
       FROM 
         ${this.table} AS e
       JOIN 
-        Location AS l ON e.location_id = l.id
+        place AS p ON e.place_id = p.id
       WHERE 
-        l.id = ?
+        p.id = ?
       AND 
         e.start_date >= CURDATE()
       ORDER BY 
         e.start_date ASC`,
-      [locationId]
+      [placeId]
     );
     return rows;
   }
 
-  async readPastByLocation(locationId) {
+  async readPastByLocation(placeId) {
     const [rows] = await this.database.query(
       `SELECT 
         e.id,
         e.title,
         e.start_date,
-        l.name AS location_name,
+        p.name AS place_name,
         e.poster_image
       FROM 
         ${this.table} AS e
       JOIN 
-        Location AS l ON e.location_id = l.id
+        place AS p ON e.place_id = p.id
       WHERE 
-        l.id = ?
+        p.id = ?
       AND 
         e.start_date < CURDATE()
       ORDER BY 
         e.start_date ASC`,
-      [locationId]
+      [placeId]
     );
     return rows;
   }
@@ -98,14 +98,14 @@ class EventRepository extends AbstractRepository {
         e.id,
         e.title,
         e.start_date,
-        l.name AS location_name,
+        p.name AS place_name,
         e.poster_image
       FROM 
         ${this.table} AS e
       JOIN 
-        Location AS l ON e.location_id = l.id
+        place AS p ON e.place_id = p.id
       JOIN 
-        Event_Artist ea ON e.id = ea.event_id
+        event_Artist ea ON e.id = ea.event_id
       WHERE 
         ea.artist_id = ? 
       AND 
@@ -123,14 +123,14 @@ class EventRepository extends AbstractRepository {
         e.id,
         e.title,
         e.start_date,
-        l.name AS location_name,
+        p.name AS place_name,
         e.poster_image
       FROM 
         ${this.table} AS e
       JOIN 
-        Location AS l ON e.location_id = l.id
+        place AS p ON e.place_id = p.id
       JOIN 
-        Event_Artist ea ON e.id = ea.event_id
+        event_Artist ea ON e.id = ea.event_id
       WHERE 
         ea.artist_id = ? 
       AND 
@@ -145,17 +145,19 @@ class EventRepository extends AbstractRepository {
   async readbyUser(userId) {
     const [rows] = await this.database.query(
       `SELECT 
-        es.status, 
+        ss.label, 
+        ss.id, 
         e.title, 
         e.start_date, 
         e.end_date, 
         e.start_time, 
         e.id,
         e.poster_image,
-        l.name 
+        p.name 
       FROM ${this.table} as e 
-      JOIN Event_Save AS es ON e.id = es.event_id 
-      JOIN location AS l ON l.id = e.location_id
+      JOIN event_Save AS es ON e.id = es.event_id 
+      JOIN save_status AS ss ON es.status_id = ss.id 
+      JOIN place AS p ON p.id = e.place_id
       WHERE es.user_id = ? `,
       [userId]
     );
@@ -171,7 +173,7 @@ class EventRepository extends AbstractRepository {
         e.start_date,
         e.end_date,
         e.start_time,
-        l.name AS location_name,
+        p.name AS place_name,
         e.poster_image,
         e.price_prevent,
         e.price_at_door,
@@ -181,7 +183,7 @@ class EventRepository extends AbstractRepository {
       FROM 
         ${this.table} AS e
       JOIN 
-        Location AS l ON e.location_id = l.id
+        place AS p ON e.place_id = p.id
       WHERE 
         e.id = ?`,
       [id]

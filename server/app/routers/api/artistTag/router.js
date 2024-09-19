@@ -7,17 +7,11 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const {
-  read,
-  edit,
-  add,
-  destroy,
-} = require("../../../controllers/EventSaveActions");
+const { add, destroy } = require("../../../controllers/artistTagActions");
 
-router.get("/:userId/:eventId", read);
-router.put("/:userId/:eventId", edit);
 router.post("/", add);
-router.delete("/:userId/:eventId", destroy);
+router.delete("/", destroy);
+
 /* ************************************************************************* */
 
 module.exports = router;

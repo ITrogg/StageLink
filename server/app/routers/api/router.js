@@ -9,13 +9,9 @@ const artistsRouter = require("./artist/router");
 
 router.use("/artist", artistsRouter);
 
-const artistGenreTagsRouter = require("./artistGenreTag/router");
+const artistTagsRouter = require("./artistTag/router");
 
-router.use("/artistGenreTag", artistGenreTagsRouter);
-
-const countriesRouter = require("./country/router");
-
-router.use("/country", countriesRouter);
+router.use("/artistTag", artistTagsRouter);
 
 const eventsRouter = require("./event/router");
 
@@ -25,17 +21,13 @@ const eventArtistsRouter = require("./eventArtist/router");
 
 router.use("/eventArtist", eventArtistsRouter);
 
-const eventSaveRouter = require("./eventSave/router");
+const tagsRouter = require("./tag/router");
 
-router.use("/eventSave", eventSaveRouter);
+router.use("/tag", tagsRouter);
 
-const genreTagsRouter = require("./genreTag/router");
+const placesRouter = require("./place/router");
 
-router.use("/genreTag", genreTagsRouter);
-
-const locationsRouter = require("./location/router");
-
-router.use("/location", locationsRouter);
+router.use("/place", placesRouter);
 
 const usersRouter = require("./user/router");
 

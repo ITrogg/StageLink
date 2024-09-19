@@ -5,11 +5,11 @@ const browse = async (req, res, next) => {
   try {
     const { type, artistId } = req.query;
     if (type === "byArtist") {
-      const genreTags = await tables.GenreTag.readByArtist(artistId);
-      res.status(200).json(genreTags);
+      const tags = await tables.tag.readByArtist(artistId);
+      res.status(200).json(tags);
     } else {
-      const genreTags = await tables.GenreTag.readAll();
-      res.status(200).json(genreTags);
+      const tags = await tables.tag.readAll();
+      res.status(200).json(tags);
     }
   } catch (err) {
     next(err);
@@ -18,8 +18,8 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const genreTag = await tables.GenreTag.read(req.params.id);
-    res.status(200).json(genreTag);
+    const tag = await tables.tag.read(req.params.id);
+    res.status(200).json(tag);
   } catch (err) {
     next(err);
   }
@@ -28,8 +28,8 @@ const read = async (req, res, next) => {
 const add = async (req, res, next) => {
   try {
     const { label } = req.body;
-    const genreTag = await tables.GenreTag.create(label);
-    res.status(201).json(genreTag);
+    const tag = await tables.tag.create(label);
+    res.status(201).json(tag);
   } catch (err) {
     next(err);
   }
