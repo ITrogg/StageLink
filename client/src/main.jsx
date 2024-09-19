@@ -83,8 +83,8 @@ const router = createBrowserRouter([
             element: <ListLocation />,
             loader: async () => {
               try {
-                const location = await connexion.get(`/api/location`);
-                return location.data;
+                const places = await connexion.get(`/api/place`);
+                return places.data;
               } catch (error) {
                 throw new Error(error);
               }
@@ -95,8 +95,8 @@ const router = createBrowserRouter([
             element: <DetailLocation />,
             loader: async ({ params }) => {
               try {
-                const [location, futurEvents, pastEvents] = await Promise.all([
-                  connexion.get(`/api/location/${params.id}`),
+                const [place, futurEvents, pastEvents] = await Promise.all([
+                  connexion.get(`/api/place/${params.id}`),
                   connexion.get(
                     `/api/event?type=futurByLocation&locationId=${params.id}`
                   ),
@@ -104,7 +104,7 @@ const router = createBrowserRouter([
                     `/api/event?type=pastByLocation&locationId=${params.id}`
                   ),
                 ]);
-                return [location.data, futurEvents.data, pastEvents.data];
+                return [place.data, futurEvents.data, pastEvents.data];
               } catch (error) {
                 throw new Error(error);
               }
