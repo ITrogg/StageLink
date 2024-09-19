@@ -1,16 +1,7 @@
 import PropTypes from "prop-types";
 import { Box, VStack, Text, Divider } from "@chakra-ui/react";
-import LinksCard from "../LinksCard";
 
 function LocationInfosTab({ location }) {
-  // Préparer les liens à afficher
-  const links = [
-    { title: "Website", url: location.website },
-    { title: "Facebook", url: location.facebook_link },
-    { title: "Instagram", url: location.instagram_link },
-    { title: "Twitter", url: location.twitter_link },
-  ].filter((link) => link.url !== null);
-
   return (
     <Box p={4} bg="white" borderRadius="md" boxShadow="md">
       <VStack spacing={4} align="center">
@@ -30,8 +21,6 @@ function LocationInfosTab({ location }) {
         )}
 
         <Divider my={4} />
-
-        <LinksCard links={links} />
       </VStack>
     </Box>
   );

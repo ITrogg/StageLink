@@ -54,11 +54,11 @@ const router = createBrowserRouter([
             element: <DetailArtist />,
             loader: async ({ params }) => {
               try {
-                const [artist, genreTags, pastEvents, futurEvents] =
+                const [artist, tags, pastEvents, futurEvents] =
                   await Promise.all([
                     connexion.get(`/api/artist/${params.id}`),
                     connexion.get(
-                      `api/genreTag?type=byArtist&artistId=${params.id}`
+                      `api/tag?type=byArtist&artistId=${params.id}`
                     ),
                     connexion.get(
                       `/api/event?type=pastByArtist&artistId=${params.id}`
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
                   ]);
                 return [
                   artist.data,
-                  genreTags.data,
+                  tags.data,
                   pastEvents.data,
                   futurEvents.data,
                 ];
