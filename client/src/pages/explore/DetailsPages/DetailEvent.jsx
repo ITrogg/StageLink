@@ -14,11 +14,11 @@ import {
 } from "@chakra-ui/react";
 import { BellIcon, CalendarIcon, CheckIcon } from "@chakra-ui/icons";
 import { useLoaderData } from "react-router-dom";
-import DetailHeader from "../../components/Detail/DetailHeader";
-import ArtistTable from "../../components/Detail/ArtistTable";
-import EditEventForm from "../../components/Forms/EditEvent";
+import DetailHeader from "../../../components/Detail/DetailHeader";
+import ArtistTable from "../../../components/Detail/ArtistTable";
+import EditEventForm from "../../../components/Forms/EditEvent";
 
-import { AuthContext } from "../../services/AuthContext";
+import { AuthContext } from "../../../services/AuthContext";
 
 function EventDetail() {
   const [event, artists] = useLoaderData();

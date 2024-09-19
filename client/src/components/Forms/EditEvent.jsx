@@ -18,8 +18,8 @@ import {
   ModalBody,
   ModalFooter,
 } from "@chakra-ui/react";
-import InputComponent from "../UI/InputComponent";
-import MultipleAutoCompleteInput from "../UI/MultipleAutoCompleteInput";
+import InputComponent from "./Inputs/InputComponent";
+import MultipleAutoCompleteInput from "./Inputs/MultipleAutoCompleteInput";
 import AddArtist from "./AddArtist";
 
 import connexion from "../../services/connexion";

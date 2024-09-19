@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import connexion from "../../services/connexion";
+import connexion from "../../../services/connexion";
 
 function AutoCompleteInput({
   id,

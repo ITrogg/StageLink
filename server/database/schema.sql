@@ -8,11 +8,6 @@ CREATE TABLE `User` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE `Country` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `label` varchar(255) NOT NULL
-);
-
 CREATE TABLE `Location` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -59,7 +54,6 @@ CREATE TABLE `Event` (
 CREATE TABLE `Artist` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `country_id` int NOT NULL,
   `logo` varchar(255),
   `genre` varchar(255),
   `facebook_link` varchar(255),
@@ -133,22 +127,6 @@ CREATE TABLE `User_User` (
   `user2_id` int NOT NULL,
   FOREIGN KEY (`user1_id`) REFERENCES `User`(`id`),
   FOREIGN KEY (`user2_id`) REFERENCES `User`(`id`)
-);
-
-CREATE TABLE `Badge` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `label` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL,
-  `descr` text NOT NULL
-);
-
-CREATE TABLE `User_Badge` (
-  `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `badge` int NOT NULL,
-  `awarded_at` date NOT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `User`(`id`),
-  FOREIGN KEY (`badge`) REFERENCES `Badge`(`id`)
 );
 
 INSERT INTO `User` (`id`, `username`, `email`, `password`) VALUES

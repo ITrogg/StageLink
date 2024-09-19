@@ -31,7 +31,7 @@ function ListLocation() {
   return (
     <MapContainer
       center={userPosition}
-      zoom={10}
+      zoom={12}
       style={{ height: "100%", width: "100%" }}
     >
       <TileLayer

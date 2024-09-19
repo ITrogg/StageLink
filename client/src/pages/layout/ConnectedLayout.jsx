@@ -1,6 +1,5 @@
 import { Outlet, Navigate, Link, useLocation } from "react-router-dom";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
-import Footer from "../../components/Navigation/Footer";
 
 function ConnectedLayout() {
   const token = localStorage.getItem("authToken");
@@ -30,7 +29,6 @@ function ConnectedLayout() {
       <Box flex="1">
         <Outlet />
       </Box>
-      <Footer />
     </Flex>
   );
 }

@@ -10,10 +10,10 @@ import {
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-import DetailHeader from "../../components/Detail/DetailHeader";
-import TabComponent from "../../components/Detail/Tab/TabComponent";
-import LocationInfosTab from "../../components/Detail/Tab/LocationInfosTab";
-import EditLocation from "../../components/Forms/EditLocation";
+import DetailHeader from "../../../components/Detail/DetailHeader";
+import TabComponent from "../../../components/Detail/Tab/TabComponent";
+import LocationInfosTab from "../../../components/Detail/Tab/LocationInfosTab";
+import EditLocation from "../../../components/Forms/EditLocation";
 
 function LocationDetail() {
   const [location, futureEvents, pastEvents] = useLoaderData();

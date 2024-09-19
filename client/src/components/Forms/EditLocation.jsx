@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
-import InputComponent from "../UI/InputComponent"; // Assure-toi que ce chemin est correct
+import InputComponent from "./Inputs/InputComponent"; // Assure-toi que ce chemin est correct
 import connexion from "../../services/connexion";
 
 function EditLocation({ onClose, location }) {

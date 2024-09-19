@@ -1,27 +1,23 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Heading, Flex } from "@chakra-ui/react";
-import InputComponent from "../UI/InputComponent";
-import SelectComponent from "../UI/SelectComponent";
+import InputComponent from "./Inputs/InputComponent";
 
 import connexion from "../../services/connexion";
 
 function AddArtist({ onArtistAdded }) {
   const [name, setName] = useState("");
-  const [countryId, setCountryId] = useState(0);
   const [genre, setGenre] = useState("");
 
   const handleSubmit = async () => {
     try {
       const newArtist = {
         name,
-        country_id: countryId,
         genre,
       };
       const response = await connexion.post("/api/artist", newArtist);
       onArtistAdded(response.data);
       setName("");
-      setCountryId("");
       setGenre("");
     } catch (err) {
       throw new Error(err);
@@ -41,15 +37,6 @@ function AddArtist({ onArtistAdded }) {
           placeholder="Nom de l'artiste"
           value={name}
           setValue={setName}
-          isRequired
-        />
-        <SelectComponent
-          id="country"
-          url="/api/country"
-          label="Pays"
-          value={countryId}
-          setValue={setCountryId}
-          placeholder="Sélectionner un pays"
           isRequired
         />
         <InputComponent

@@ -8,10 +8,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
-import DetailHeader from "../../components/Detail/DetailHeader";
-import TabComponent from "../../components/Detail/Tab/TabComponent";
-import ArtistInfosTab from "../../components/Detail/Tab/ArtistInfosTab";
-import EditArtist from "../../components/Forms/EditArtist";
+import DetailHeader from "../../../components/Detail/DetailHeader";
+import TabComponent from "../../../components/Detail/Tab/TabComponent";
+import ArtistInfosTab from "../../../components/Detail/Tab/ArtistInfosTab";
+import EditArtist from "../../../components/Forms/EditArtist";
 
 function ArtistDetail() {
   const [artist, genreTags, pastEvents, futureEvents] = useLoaderData();
