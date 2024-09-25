@@ -8,8 +8,20 @@ import { useState } from "react";
 
 function AddPlace() {
   const [inputValue, setInputValue] = useState("");
+  const [newPlace, setNewPlace] = useState({});
+  console.info(newPlace);
   const handleSelect = ({ properties }) => {
     setInputValue(properties.formatted);
+    setNewPlace({
+      name: "To Complete",
+      address: properties.address_line1,
+      city: properties.city,
+      state: properties.state,
+      country: properties.country,
+      postal_code: properties.postcode,
+      latitude: properties.lat,
+      longitude: properties.lon,
+    });
   };
 
   return (
