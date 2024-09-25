@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { SimpleGrid, Button } from "@chakra-ui/react";
 
-import InputComponent from "./Inputs/InputComponent";
-import AddressAutoCompleteInput from "./Inputs/AddressAutoCompleteInput";
+import InputComponent from "../../UI/Inputs/InputComponent";
+import AddressAutoCompleteInput from "../../UI/Inputs/AddressAutoCompleteInput";
 
 function AddPlace() {
   const [locationInfo, setLocationInfo] = useState({});

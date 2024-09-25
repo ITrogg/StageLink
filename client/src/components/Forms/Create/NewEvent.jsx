@@ -17,13 +17,13 @@ import {
   useBreakpointValue,
   Textarea, // Import du composant Textarea de Chakra UI
 } from "@chakra-ui/react";
-import InputComponent from "../components/Forms/Inputs/InputComponent";
-import MultipleAutoCompleteInput from "../components/Forms/Inputs/MultipleAutoCompleteInput";
-import AddArtist from "../components/Forms/AddArtist";
-import connexion from "../services/connexion";
-import { AuthContext } from "../services/AuthContext";
-import AutoCompleteInput from "../components/Forms/Inputs/AutoCompleteInput";
-import AddPlace from "../components/Forms/AddPlace";
+import InputComponent from "../../UI/Inputs/InputComponent";
+import MultipleAutoCompleteInput from "../../UI/Inputs/MultipleAutoCompleteInput";
+import AutoCompleteInput from "../../UI/Inputs/AutoCompleteInput";
+import CreateArtist from "./CreateArtist";
+import connexion from "../../../services/connexion";
+import { AuthContext } from "../../../services/AuthContext";
+import CreatePlace from "./CreatePlace";
 
 function AddEventForm() {
   const [title, setTitle] = useState("");
@@ -191,7 +191,7 @@ function AddEventForm() {
                 <AccordionIcon />
               </AccordionButton>
               <AccordionPanel>
-                <AddPlace />
+                <CreatePlace />
               </AccordionPanel>
             </AccordionItem>
           </Accordion>
@@ -224,7 +224,7 @@ function AddEventForm() {
                   <AccordionIcon />
                 </AccordionButton>
                 <AccordionPanel>
-                  <AddArtist onArtistAdded={handleAddArtist} />
+                  <CreateArtist onArtistAdded={handleAddArtist} />
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>

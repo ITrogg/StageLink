@@ -18,11 +18,11 @@ import {
   ModalBody,
   ModalFooter,
 } from "@chakra-ui/react";
-import InputComponent from "./Inputs/InputComponent";
-import MultipleAutoCompleteInput from "./Inputs/MultipleAutoCompleteInput";
-import AddArtist from "./AddArtist";
+import InputComponent from "../../UI/Inputs/InputComponent";
+import MultipleAutoCompleteInput from "../../UI/Inputs/MultipleAutoCompleteInput";
+import AddArtist from "../Create/CreateArtist";
 
-import connexion from "../../services/connexion";
+import connexion from "../../../services/connexion";
 
 function EditEvent({ event, onClose }) {
   const [description, setDescription] = useState(event.description);

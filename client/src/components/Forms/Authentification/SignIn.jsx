@@ -2,9 +2,9 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
-import InputElement from "./Inputs/InputComponent";
+import InputElement from "../../UI/Inputs/InputComponent";
 
-import connexion from "../../services/connexion";
+import connexion from "../../../services/connexion";
 
 function Inscription({ setMessage, setForm }) {
   const [email, setEmail] = useState("");

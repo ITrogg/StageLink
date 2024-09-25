@@ -1,9 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Heading, Flex } from "@chakra-ui/react";
-import InputComponent from "./Inputs/InputComponent";
+import InputComponent from "../../UI/Inputs/InputComponent";
 
-import connexion from "../../services/connexion";
+import connexion from "../../../services/connexion";
 
 function AddArtist({ onArtistAdded }) {
   const [name, setName] = useState("");

@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
-import InputComponent from "./Inputs/InputComponent"; // Assure-toi que ce chemin est correct
-import connexion from "../../services/connexion";
+import InputComponent from "../../UI/Inputs/InputComponent"; // Assure-toi que ce chemin est correct
+import connexion from "../../../services/connexion";
 
 function EditLocation({ onClose, location }) {
   const [formData, setFormData] = useState({
