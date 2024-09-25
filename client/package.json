@@ -11,6 +11,8 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@geoapify/geocoder-autocomplete": "^2.0.3",
+    "@geoapify/react-geocoder-autocomplete": "^2.0.1",
     "@react-leaflet/core": "^2.1.0",
     "axios": "^1.7.4",
     "framer-motion": "^11.3.29",
