@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SimpleGrid, Button } from "@chakra-ui/react";
 
-import InputComponent from "../../UI/Inputs/InputComponent";
+import InputComponent from "../../UI/Inputs/TextInput";
 import AddressAutoCompleteInput from "../../UI/Inputs/AddressAutoCompleteInput";
 
 function AddPlace() {

@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
-import InputComponent from "../../UI/Inputs/InputComponent";
+import InputComponent from "../../UI/Inputs/TextInput";
 
 import { AuthContext } from "../../../services/AuthContext";
 

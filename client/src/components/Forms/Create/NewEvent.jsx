@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   FormControl,
-  FormLabel,
   VStack,
   Heading,
   Accordion,
@@ -15,30 +14,27 @@ import {
   Switch,
   Text,
   useBreakpointValue,
-  Textarea, // Import du composant Textarea de Chakra UI
 } from "@chakra-ui/react";
-import InputComponent from "../../UI/Inputs/InputComponent";
+import InputComponent from "../../UI/Inputs/TextInput";
 import MultipleAutoCompleteInput from "../../UI/Inputs/MultipleAutoCompleteInput";
 import AutoCompleteInput from "../../UI/Inputs/AutoCompleteInput";
 import CreateArtist from "./CreateArtist";
 import connexion from "../../../services/connexion";
 import { AuthContext } from "../../../services/AuthContext";
 import CreatePlace from "./CreatePlace";
+import AddMoreDetails from "./Add/AddMoreDetails";
 
 function AddEventForm() {
+  const [newEvent, setNewEvent] = useState({});
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [locationId, setLocationId] = useState("");
   const [displayedLocation, setDisplayedLocation] = useState("");
   const [createdBy, setCreatedBy] = useState("");
-  const [posterImage, setPosterImage] = useState("");
   const [pricePrevent, setPricePrevent] = useState("");
   const [priceAtDoor, setPriceAtDoor] = useState("");
-  const [facebookLink, setFacebookLink] = useState("");
-  const [ticketLink, setTicketLink] = useState("");
   const [isFree, setIsFree] = useState(false);
   const [isMultipleDays, setIsMultipleDays] = useState(false);
   const [artistIds, setArtistIds] = useState([]);
@@ -55,22 +51,18 @@ function AddEventForm() {
   const handleSubmit = async () => {
     try {
       setCreatedBy(parseInt(user.id, 10));
-      const newEvent = {
+      const newEvents = {
         title,
-        description,
         start_date: startDate,
         end_date: endDate,
         start_time: startTime,
         location_id: locationId,
         created_by: createdBy,
-        poster_image: posterImage,
         price_prevent: isFree ? null : pricePrevent,
         price_at_door: isFree ? null : priceAtDoor,
-        facebook_link: facebookLink,
-        ticket_link: ticketLink,
         is_free: isFree,
       };
-      const response = await connexion.post("/api/event", newEvent);
+      const response = await connexion.post("/api/event", newEvents);
 
       const eventId = response.data;
       await Promise.all(
@@ -274,57 +266,7 @@ function AddEventForm() {
             </FormControl>
           </FormControl>
         </Box>
-
-        {/* Détails supplémentaires */}
-        <Box borderWidth="1px" borderRadius="md" p={4} bg="gray.50">
-          <Text fontWeight="bold" mb={2}>
-            Détails supplémentaires
-          </Text>
-          <FormControl mb={4}>
-            <FormLabel htmlFor="description">Description</FormLabel>
-            <Textarea
-              id="description"
-              placeholder="Description de l'événement"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={5}
-              bg="none"
-              borderColor="gray.300"
-              _focus={{
-                borderColor: "pink.500",
-                boxShadow: "none",
-                outline: "none",
-              }}
-              fontSize="md"
-              lineHeight="1.5"
-            />
-            <InputComponent
-              id="poster_image"
-              label="Image de l'affiche"
-              type="text"
-              placeholder="URL de l'image"
-              value={posterImage}
-              setValue={setPosterImage}
-            />
-            <InputComponent
-              id="facebook_link"
-              label="Lien Facebook"
-              type="text"
-              placeholder="Lien vers la page Facebook"
-              value={facebookLink}
-              setValue={setFacebookLink}
-            />
-            <InputComponent
-              id="ticket_link"
-              label="Lien des billets"
-              type="text"
-              placeholder="Lien vers la page de vente des billets"
-              value={ticketLink}
-              setValue={setTicketLink}
-            />
-          </FormControl>
-        </Box>
-
+        <AddMoreDetails newEvent={newEvent} setNewEvent={setNewEvent} />
         <Button colorScheme="blue" mt={6} onClick={handleSubmit} size="lg">
           Ajouter l'événement
         </Button>

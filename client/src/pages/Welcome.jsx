@@ -1,8 +1,8 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
-import Connection from "../components/Forms/Connection";
-import Inscription from "../components/Forms/SignIn";
+import Connection from "../components/Forms/Authentification/Connection";
+import Inscription from "../components/Forms/Authentification/SignIn";
 
 import backgroundImage from "../assets/images/background.jpg";
 
