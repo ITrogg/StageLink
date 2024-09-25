@@ -17,12 +17,13 @@ import {
   useBreakpointValue,
   Textarea, // Import du composant Textarea de Chakra UI
 } from "@chakra-ui/react";
-import InputComponent from "../../components/Forms/Inputs/InputComponent";
-import MultipleAutoCompleteInput from "../../components/Forms/Inputs/MultipleAutoCompleteInput";
-import AddArtist from "../../components/Forms/AddArtist";
-import connexion from "../../services/connexion";
-import { AuthContext } from "../../services/AuthContext";
-import AutoCompleteInput from "../../components/Forms/Inputs/AutoCompleteInput";
+import InputComponent from "../components/Forms/Inputs/InputComponent";
+import MultipleAutoCompleteInput from "../components/Forms/Inputs/MultipleAutoCompleteInput";
+import AddArtist from "../components/Forms/AddArtist";
+import connexion from "../services/connexion";
+import { AuthContext } from "../services/AuthContext";
+import AutoCompleteInput from "../components/Forms/Inputs/AutoCompleteInput";
+import AddPlace from "../components/Forms/AddPlace";
 
 function AddEventForm() {
   const [title, setTitle] = useState("");
@@ -181,6 +182,19 @@ function AddEventForm() {
               setDisplayedValue={setDisplayedLocation}
             />
           </FormControl>
+          <Accordion allowToggle mt={4}>
+            <AccordionItem>
+              <AccordionButton>
+                <Box flex="1" textAlign="left">
+                  Ajouter un lieu
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+              <AccordionPanel>
+                <AddPlace />
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
         </Box>
 
         {/* Qui */}
