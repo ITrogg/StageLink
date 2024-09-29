@@ -8,7 +8,7 @@ function AutoCompleteInput({
   label,
   displayedValue,
   setDisplayedValue,
-  setValue,
+  handleChange,
   placeholder,
   isRequired,
   url,
@@ -32,7 +32,7 @@ function AutoCompleteInput({
       (option) => option.label === e.target.value
     );
     if (selectedOption) {
-      setValue(selectedOption.id);
+      handleChange(id, selectedOption.id);
       setDisplayedValue(selectedOption.label);
     } else {
       setDisplayedValue(e.target.value);
@@ -74,7 +74,7 @@ function AutoCompleteInput({
 AutoCompleteInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  setValue: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   setDisplayedValue: PropTypes.func.isRequired,
   displayedValue: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
