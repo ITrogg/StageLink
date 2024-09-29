@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Heading } from "@chakra-ui/react";
 import connexion from "../../../services/connexion";
 import { AuthContext } from "../../../services/AuthContext";
+import AddNameAndDate from "./Add/AddNameAndDate";
 import AddMoreDetails from "./Add/AddMoreDetails";
 import AddArtists from "./Add/AddArtists";
 
@@ -42,7 +43,7 @@ function AddEventForm() {
       <Heading as="h1" size="lg" mb={6} textAlign="center">
         Ajouter un événement
       </Heading>
-
+      <AddNameAndDate newEvent={newEvent} handleChange={handleChange} />
       <AddArtists artistIds={artistIds} setArtistIds={setArtistIds} />
       <AddMoreDetails newEvent={newEvent} handleChange={handleChange} />
       <Button colorScheme="blue" mt={6} onClick={handleSubmit} size="lg">
