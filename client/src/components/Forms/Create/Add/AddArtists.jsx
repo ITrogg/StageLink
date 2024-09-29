@@ -14,7 +14,7 @@ import MultipleAutoCompleteInput from "../../../UI/Inputs/MultipleAutoCompleteIn
 import CreateArtist from "../CreateArtist";
 
 function AddArtists({ artistIds, setArtistIds }) {
-  const [displayedArtist, setDisplayedArtist] = useState("caca");
+  const [displayedArtist, setDisplayedArtist] = useState("");
   const handleAddArtist = (id) => {
     setArtistIds((prev) => [...prev, id]);
   };

@@ -12,6 +12,13 @@ function AddEventForm() {
   const [artistIds, setArtistIds] = useState([]);
   const navigate = useNavigate();
 
+  const handleChange = (id, value) => {
+    setNewEvent((prevEvent) => ({
+      ...prevEvent,
+      [id]: value,
+    }));
+  };
+
   const handleSubmit = async () => {
     try {
       const response = await connexion.post("/api/event", newEvent);
@@ -46,7 +53,7 @@ function AddEventForm() {
       </Heading>
 
       <AddArtists artistIds={artistIds} setArtistIds={setArtistIds} />
-      <AddMoreDetails newEvent={newEvent} setNewEvent={setNewEvent} />
+      <AddMoreDetails newEvent={newEvent} handleChange={handleChange} />
       <Button colorScheme="blue" mt={6} onClick={handleSubmit} size="lg">
         Ajouter l'événement
       </Button>
