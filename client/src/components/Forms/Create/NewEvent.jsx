@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Button, Heading } from "@chakra-ui/react";
 import connexion from "../../../services/connexion";
 import { AuthContext } from "../../../services/AuthContext";
 import AddMoreDetails from "./Add/AddMoreDetails";
@@ -38,16 +38,7 @@ function AddEventForm() {
   };
 
   return (
-    <Box
-      m={6}
-      p={4}
-      borderWidth="1px"
-      borderRadius="md"
-      bg="white"
-      shadow="md"
-      maxWidth="800px"
-      mx="auto"
-    >
+    <>
       <Heading as="h1" size="lg" mb={6} textAlign="center">
         Ajouter un événement
       </Heading>
@@ -57,7 +48,7 @@ function AddEventForm() {
       <Button colorScheme="blue" mt={6} onClick={handleSubmit} size="lg">
         Ajouter l'événement
       </Button>
-    </Box>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { FormControl, FormLabel, Textarea } from "@chakra-ui/react";
 
-function TextInput({
+function TextareaInput({
   id,
   label,
   placeholder,
@@ -12,34 +12,27 @@ function TextInput({
   return (
     <FormControl id={id} isRequired={isRequired}>
       <FormLabel htmlFor={id}>{label}</FormLabel>
-      <Input
-        type="text"
-        // props
+      <Textarea
         name={id}
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        // style
-        borderColor="gray.800"
+        rows={5}
         bg="none"
-        borderRadius="md"
-        _hover={{
-          borderColor: "purple.200",
-        }}
+        borderColor="gray.300"
         _focus={{
-          borderColor: "purple.600",
+          borderColor: "pink.500",
           boxShadow: "none",
           outline: "none",
-          bg: "white",
         }}
-        _placeholder={{ color: "gray.500" }}
-        size={{ base: "md", md: "lg" }}
+        fontSize="md"
+        lineHeight="1.5"
       />
     </FormControl>
   );
 }
 
-TextInput.propTypes = {
+TextareaInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
@@ -48,4 +41,4 @@ TextInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export default TextInput;
+export default TextareaInput;
