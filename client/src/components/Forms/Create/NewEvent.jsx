@@ -5,6 +5,7 @@ import { Button, Heading } from "@chakra-ui/react";
 
 import AddNameAndDate from "./Add/AddNameAndDate";
 import AddPlace from "./Add/AddPlace";
+import AddPrice from "./Add/AddPrice";
 import AddMoreDetails from "./Add/AddMoreDetails";
 import AddArtists from "./Add/AddArtists";
 
@@ -47,6 +48,7 @@ function AddEventForm() {
       <Heading as="h1" size="lg" mb={6} textAlign="center">
         Ajouter un événement
       </Heading>
+      <AddPrice newEvent={newEvent} handleChange={handleChange} />
       <AddPlace newEvent={newEvent} handleChange={handleChange} />
       <AddNameAndDate newEvent={newEvent} handleChange={handleChange} />
       <AddArtists artistIds={artistIds} setArtistIds={setArtistIds} />
