@@ -1,21 +1,60 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { Button, Heading } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  useSteps,
+  Box,
+  Step,
+  Stepper,
+  StepStatus,
+  StepIndicator,
+  StepIcon,
+  StepNumber,
+  StepTitle,
+  StepDescription,
+  StepSeparator,
+  ButtonGroup,
+} from "@chakra-ui/react";
 
 import AddNameAndDate from "./Add/AddNameAndDate";
 import AddPlace from "./Add/AddPlace";
+import AddArtists from "./Add/AddArtists";
 import AddPrice from "./Add/AddPrice";
 import AddMoreDetails from "./Add/AddMoreDetails";
-import AddArtists from "./Add/AddArtists";
 
 import connexion from "../../../services/connexion";
 import { AuthContext } from "../../../services/AuthContext";
+
+const steps = [
+  {
+    title: "Quand",
+    description: "Ajoute un titre et une date",
+    component: AddNameAndDate,
+  },
+  { title: "Où", description: "Ajoute un lieu", component: AddPlace },
+  {
+    title: "Qui",
+    description: "Ajoute un·e ou plusieurs artistes",
+    component: AddArtists,
+  },
+  { title: "Combien", description: "Ajoute le prix", component: AddPrice },
+  {
+    title: "Détails",
+    description: "Ajoute des détails",
+    component: AddMoreDetails,
+  },
+];
 
 function AddEventForm() {
   const { user } = useContext(AuthContext);
   const [newEvent, setNewEvent] = useState({ createdBy: user.id });
   const [artistIds, setArtistIds] = useState([]);
+  const { activeStep, setActiveStep } = useSteps({
+    index: 0,
+    count: steps.length,
+  });
+
   const navigate = useNavigate();
 
   const handleChange = (id, value) => {
@@ -43,19 +82,54 @@ function AddEventForm() {
     }
   };
 
+  const StepComponent = steps[activeStep].component;
+
   return (
     <>
-      <Heading as="h1" size="lg" mb={6} textAlign="center">
-        Ajouter un événement
-      </Heading>
-      <AddPrice newEvent={newEvent} handleChange={handleChange} />
-      <AddPlace newEvent={newEvent} handleChange={handleChange} />
-      <AddNameAndDate newEvent={newEvent} handleChange={handleChange} />
-      <AddArtists artistIds={artistIds} setArtistIds={setArtistIds} />
-      <AddMoreDetails newEvent={newEvent} handleChange={handleChange} />
-      <Button colorScheme="blue" mt={6} onClick={handleSubmit} size="lg">
-        Ajouter l'événement
-      </Button>
+      <Heading>Ajouter un événement</Heading>
+      <Stepper index={activeStep}>
+        {steps.map((step) => (
+          <Step key={step.index}>
+            <StepIndicator>
+              <StepStatus
+                complete={<StepIcon />}
+                incomplete={<StepNumber />}
+                active={<StepNumber />}
+              />
+            </StepIndicator>
+
+            <Box flexShrink="0">
+              <StepTitle>{step.title}</StepTitle>
+              <StepDescription>{step.description}</StepDescription>
+            </Box>
+
+            <StepSeparator />
+          </Step>
+        ))}
+      </Stepper>
+      <StepComponent
+        newEvent={newEvent}
+        handleChange={handleChange}
+        artistIds={artistIds}
+        setArtistIds={setArtistIds}
+      />
+      {activeStep < steps.length - 1 ? null : (
+        <Button onClick={handleSubmit}>Ajouter l'événement</Button>
+      )}
+      <ButtonGroup>
+        <Button
+          onClick={() => setActiveStep(activeStep - 1)}
+          isDisabled={activeStep === 0}
+        >
+          Précédent
+        </Button>
+        <Button
+          onClick={() => setActiveStep(activeStep + 1)}
+          isDisabled={activeStep === steps.length - 1}
+        >
+          Suivant
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
