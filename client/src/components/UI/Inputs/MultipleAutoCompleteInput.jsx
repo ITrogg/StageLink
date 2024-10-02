@@ -20,6 +20,7 @@ function SelectMultiple({
   url,
   queryForTags,
   queryForInput,
+  handleChange,
   displayedValue,
   setDisplayedValue,
 }) {
@@ -87,6 +88,7 @@ function SelectMultiple({
           query={queryForInput}
           displayedValue={displayedValue}
           setDisplayedValue={setDisplayedValue}
+          handleChange={handleChange}
         />
         <IconButton
           icon={<AddIcon />}
@@ -127,6 +129,7 @@ SelectMultiple.propTypes = {
   queryForInput: PropTypes.string.isRequired,
   displayedValue: PropTypes.string.isRequired,
   setDisplayedValue: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default SelectMultiple;
