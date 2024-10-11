@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Box, FormControl, Switch, Text } from "@chakra-ui/react";
 
 import TextInput from "../../../UI/Inputs/TextInput";
+import DateInput from "../../../UI/Inputs/DateInput";
+import TimeInput from "../../../UI/Inputs/TimeInput";
 
 function AddNameAndDate({ newEvent, handleChange }) {
   const { title, startDate, startTime, endDate } = newEvent;
@@ -23,20 +25,15 @@ function AddNameAndDate({ newEvent, handleChange }) {
         setValue={(e) => handleChange("tilte", e.target.value)}
         isRequired
       />
-
-      <Text fontWeight="bold" mb={2}>
-        Quand ?
-      </Text>
       <FormControl mb={4}>
-        <TextInput
+        <DateInput
           id="startDate"
           label="Date de début"
-          placeholder="Date de début"
           value={startDate}
           setValue={(e) => handleChange("startDate", e.target.value)}
           isRequired
         />
-        <TextInput
+        <TimeInput
           id="startTime"
           label="Heure de début"
           placeholder="Heure de début"
@@ -50,13 +47,11 @@ function AddNameAndDate({ newEvent, handleChange }) {
           Sur plusieurs jours
         </Switch>
         {isMultipleDays && (
-          <TextInput
+          <DateInput
             id="endDate"
             label="Date de fin"
-            placeholder="Date de fin"
             value={endDate}
             setValue={(e) => handleChange("endDate", e.target.value)}
-            isRequired
           />
         )}
       </FormControl>
