@@ -32,7 +32,7 @@ function AutoCompleteInput({
       (option) => option.label === e.target.value
     );
     if (selectedOption) {
-      handleChange(id, selectedOption.id);
+      handleChange(selectedOption.id);
       setDisplayedValue(selectedOption.label);
     } else {
       setDisplayedValue(e.target.value);
@@ -48,6 +48,7 @@ function AutoCompleteInput({
         value={displayedValue}
         onChange={handleOptionSelect}
         placeholder={placeholder}
+        // style
         bg="none"
         borderColor="grey.800"
         _hover={{ borderColor: "pink.200", boxShadow: "0 0 0 1px pink.400" }}

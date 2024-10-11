@@ -31,9 +31,10 @@ function AddArtists({ artistIds, setArtistIds }) {
           placeholder="Mozart"
           selectedItemIds={artistIds}
           setSelectedItemIds={setArtistIds}
-          queryForTags="?type=forTag"
           url="api/artist"
+          queryForTags="?type=forTag"
           queryForInput="?type=forInput"
+          handleChange={handleAddArtist}
           displayedValue={displayedArtist}
           setDisplayedValue={setDisplayedArtist}
         />
