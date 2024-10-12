@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 
-function TextInput({ id, label, isRequired, value, handleChange }) {
+function TimeInput({ id, label, isRequired, value, handleChange }) {
   return (
     <FormControl id={id} isRequired={isRequired}>
       <FormLabel htmlFor={id}>{label}</FormLabel>
@@ -31,7 +31,7 @@ function TextInput({ id, label, isRequired, value, handleChange }) {
   );
 }
 
-TextInput.propTypes = {
+TimeInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string,
   isRequired: PropTypes.bool,
@@ -39,4 +39,4 @@ TextInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export default TextInput;
+export default TimeInput;

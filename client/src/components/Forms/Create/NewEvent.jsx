@@ -20,7 +20,6 @@ import {
 import AddNameAndDate from "./Add/AddNameAndDate";
 import AddPlace from "./Add/AddPlace";
 import AddArtists from "./Add/AddArtists";
-import AddPrice from "./Add/AddPrice";
 import AddMoreDetails from "./Add/AddMoreDetails";
 
 import connexion from "../../../services/connexion";
@@ -38,7 +37,6 @@ const steps = [
     description: "Ajoute un·e ou plusieurs artistes",
     component: AddArtists,
   },
-  { title: "Combien", description: "Ajoute le prix", component: AddPrice },
   {
     title: "Détails",
     description: "Ajoute des détails",

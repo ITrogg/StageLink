@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import AutoCompleteInput from "./AutoCompleteInput";
 import connexion from "../../../services/connexion";
 
-function SelectMultiple({
+function MultipleAutoCompleteInput({
   id,
   label,
   placeholder,
@@ -118,7 +118,7 @@ function SelectMultiple({
   );
 }
 
-SelectMultiple.propTypes = {
+MultipleAutoCompleteInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -132,4 +132,4 @@ SelectMultiple.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export default SelectMultiple;
+export default MultipleAutoCompleteInput;
