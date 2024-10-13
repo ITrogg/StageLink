@@ -4,6 +4,7 @@ import { Box, Text } from "@chakra-ui/react";
 import TextInput from "../../../UI/Inputs/TextInput";
 import TextareaInput from "../../../UI/Inputs/TextareaInput";
 import NumberInput from "../../../UI/Inputs/NumberInput";
+import SwitchInput from "../../../UI/Inputs/SwitchInput";
 
 function AddMoreDetails({ newEvent, handleChange }) {
   const { description, facebookLink, ticketLink } = newEvent;
@@ -20,6 +21,7 @@ function AddMoreDetails({ newEvent, handleChange }) {
         value={description}
         handleChange={(e) => handleChange("description", e.target.value)}
       />
+      <SwitchInput id="isFree" label="Evenement Gratuit ? " />
       <NumberInput id="priceAtDoor" label="Prix à l'entrée" />
       <NumberInput id="pricePrevent" label="Prix en prevente" />
       <TextInput

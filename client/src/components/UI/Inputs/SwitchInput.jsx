@@ -16,3 +16,5 @@ SwitchInput.propTypes = {
   handleChange: PropTypes.func.isRequired,
   value: PropTypes.bool,
 };
+
+export default SwitchInput;
