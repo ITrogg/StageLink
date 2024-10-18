@@ -3,7 +3,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 import TextInput from "../../../UI/Inputs/TextInput";
 import TextareaInput from "../../../UI/Inputs/TextareaInput";
-import NumberInput from "../../../UI/Inputs/NumberInput";
+import NumberInput from "../../../UI/Inputs/NumberInputComponent";
 import SwitchInput from "../../../UI/Inputs/SwitchInput";
 
 function AddMoreDetails({ newEvent, handleChange }) {

@@ -2,7 +2,8 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Button, FormControl, Text } from "@chakra-ui/react";
 
-import InputComponent from "../../UI/Inputs/TextInput";
+import TextInput from "../../UI/Inputs/TextInput";
+import PasswordInput from "../../UI/Inputs/PasswordInput";
 
 import { AuthContext } from "../../../services/AuthContext";
 
@@ -24,15 +25,15 @@ function Connection() {
   return (
     <Container p={5}>
       <FormControl>
-        <InputComponent
+        <TextInput
           id="email"
           label="Adresse Email"
-          type="email"
           placeholder="exemple@mail.com"
+          isRequired
           value={email}
-          setValue={setEmail}
+          handleChange={(e) => setEmail(e.target.value)}
         />
-        <InputComponent
+        <PasswordInput
           id="password"
           label="Mot de Passe"
           type="password"
