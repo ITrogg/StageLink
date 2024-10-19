@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
 import AutoCompleteInput from "./AutoCompleteInput";
 import connexion from "../../../services/connexion";
 
-function SelectMultiple({
+function MultipleAutoCompleteInput({
   id,
   label,
   placeholder,
@@ -20,6 +20,7 @@ function SelectMultiple({
   url,
   queryForTags,
   queryForInput,
+  handleChange,
   displayedValue,
   setDisplayedValue,
 }) {
@@ -87,6 +88,7 @@ function SelectMultiple({
           query={queryForInput}
           displayedValue={displayedValue}
           setDisplayedValue={setDisplayedValue}
+          handleChange={handleChange}
         />
         <IconButton
           icon={<AddIcon />}
@@ -116,7 +118,7 @@ function SelectMultiple({
   );
 }
 
-SelectMultiple.propTypes = {
+MultipleAutoCompleteInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -127,6 +129,7 @@ SelectMultiple.propTypes = {
   queryForInput: PropTypes.string.isRequired,
   displayedValue: PropTypes.string.isRequired,
   setDisplayedValue: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
-export default SelectMultiple;
+export default MultipleAutoCompleteInput;

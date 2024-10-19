@@ -8,7 +8,7 @@ function AutoCompleteInput({
   label,
   displayedValue,
   setDisplayedValue,
-  setValue,
+  handleChange,
   placeholder,
   isRequired,
   url,
@@ -32,7 +32,7 @@ function AutoCompleteInput({
       (option) => option.label === e.target.value
     );
     if (selectedOption) {
-      setValue(selectedOption.id);
+      handleChange(selectedOption.id);
       setDisplayedValue(selectedOption.label);
     } else {
       setDisplayedValue(e.target.value);
@@ -48,17 +48,6 @@ function AutoCompleteInput({
         value={displayedValue}
         onChange={handleOptionSelect}
         placeholder={placeholder}
-        bg="none"
-        borderColor="grey.800"
-        _hover={{ borderColor: "pink.200", boxShadow: "0 0 0 1px pink.400" }}
-        _focus={{
-          borderColor: "pink.500",
-          boxShadow: "none",
-          outline: "none",
-          bg: "white",
-        }}
-        _placeholder={{ color: "gray.500" }}
-        size={{ base: "md", md: "lg" }}
       />
       <datalist id={`autocomplete-list-${id}`}>
         {options.map((option) => (
@@ -74,7 +63,7 @@ function AutoCompleteInput({
 AutoCompleteInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  setValue: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   setDisplayedValue: PropTypes.func.isRequired,
   displayedValue: PropTypes.string.isRequired,
   placeholder: PropTypes.string,

@@ -8,7 +8,7 @@ const read = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    const user = await tables.User.readByEmail(email);
+    const user = await tables.user.readByEmail(email);
 
     if (!user) {
       res.status(404).json({ message: "Utilisateur·ice non trouvé·e" });
@@ -37,7 +37,7 @@ const read = async (req, res, next) => {
 const add = async (req, res, next) => {
   const user = req.body;
   try {
-    const newUserId = await tables.User.create(user);
+    const newUserId = await tables.user.create(user);
     res.status(201).json({ newUserId });
   } catch (err) {
     next(err);

@@ -16,7 +16,7 @@ import DetailLocation from "./pages/explore/DetailsPages/DetailLocation";
 import ListEvent from "./pages/explore/ListEvent";
 import DetailEvent from "./pages/explore/DetailsPages/DetailEvent";
 import DashboardLayout from "./pages/layout/DashboardLayout";
-import NewEvent from "./pages/NewEvent";
+import NewEvent from "./components/Forms/Create/NewEvent";
 
 import connexion from "./services/connexion";
 

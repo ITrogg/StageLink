@@ -1,10 +1,12 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Button, FormControl, Text } from "@chakra-ui/react";
+import { Container, FormControl, Text } from "@chakra-ui/react";
 
-import InputComponent from "./Inputs/InputComponent";
+import TextInput from "../../UI/Inputs/TextInput";
+import PasswordInput from "../../UI/Inputs/PasswordInput";
 
-import { AuthContext } from "../../services/AuthContext";
+import { AuthContext } from "../../../services/AuthContext";
+import SimpleButton from "../../UI/Buttons/SimpleButton";
 
 function Connection() {
   const navigate = useNavigate();
@@ -24,29 +26,27 @@ function Connection() {
   return (
     <Container p={5}>
       <FormControl>
-        <InputComponent
+        <TextInput
           id="email"
           label="Adresse Email"
-          type="email"
           placeholder="exemple@mail.com"
+          isRequired
           value={email}
-          setValue={setEmail}
+          handleChange={(e) => setEmail(e.target.value)}
         />
-        <InputComponent
+        <PasswordInput
           id="password"
           label="Mot de Passe"
-          type="password"
+          isRequired
           value={password}
-          setValue={setPassword}
+          handleChange={(e) => setPassword(e.target.value)}
         />
         {error && (
           <Text color="red.500" mt={4}>
             {error}
           </Text>
         )}
-        <Button mt={4} colorScheme="red" onClick={handleSubmit}>
-          Connexion
-        </Button>
+        <SimpleButton handleClick={handleSubmit} text="Connexion" />
       </FormControl>
     </Container>
   );

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Button, Heading, Flex } from "@chakra-ui/react";
-import InputComponent from "./Inputs/InputComponent";
+import TextInput from "../../UI/Inputs/TextInput";
 
-import connexion from "../../services/connexion";
+import connexion from "../../../services/connexion";
 
 function AddArtist({ onArtistAdded }) {
   const [name, setName] = useState("");
@@ -30,22 +30,20 @@ function AddArtist({ onArtistAdded }) {
         Ajouter un nouvel artiste
       </Heading>
       <Flex flexDirection={{ base: "column", md: "row" }} gap={6} align="end">
-        <InputComponent
+        <TextInput
           id="name"
           label="Nom de l'artiste"
-          type="text"
           placeholder="Nom de l'artiste"
           value={name}
-          setValue={setName}
+          handleChange={(e) => setName(e.target.value)}
           isRequired
         />
-        <InputComponent
+        <TextInput
           id="genre"
           label="Genre"
-          type="text"
           placeholder="Genre"
           value={genre}
-          setValue={setGenre}
+          handleChange={(e) => setGenre(e.target.value)}
           isRequired
         />
       </Flex>
