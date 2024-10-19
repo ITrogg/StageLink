@@ -19,21 +19,6 @@ function TextInput({
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        // style
-        borderColor="gray.800"
-        bg="none"
-        borderRadius="md"
-        _hover={{
-          borderColor: "purple.200",
-        }}
-        _focus={{
-          borderColor: "purple.600",
-          boxShadow: "none",
-          outline: "none",
-          bg: "white",
-        }}
-        _placeholder={{ color: "gray.500" }}
-        size={{ base: "md", md: "lg" }}
       />
     </FormControl>
   );

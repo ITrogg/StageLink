@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -16,35 +17,22 @@ function TextInput({
   value,
   handleChange,
 }) {
+  const [show, setShow] = useState(false);
+
   return (
     <FormControl id={id} isRequired={isRequired}>
       <FormLabel htmlFor={id}>{label}</FormLabel>
       <InputGroup>
         <Input
-          type="password"
+          type={show ? "text" : "password"}
           // props
           name={id}
           value={value}
           onChange={handleChange}
           placeholder={placeholder}
-          // style
-          borderColor="gray.800"
-          bg="none"
-          borderRadius="md"
-          _hover={{
-            borderColor: "purple.200",
-          }}
-          _focus={{
-            borderColor: "purple.600",
-            boxShadow: "none",
-            outline: "none",
-            bg: "white",
-          }}
-          _placeholder={{ color: "gray.500" }}
-          size={{ base: "md", md: "lg" }}
         />
         <InputRightElement>
-          <Button>Show</Button>
+          <Button onClick={() => setShow(!show)}>Show</Button>
         </InputRightElement>
       </InputGroup>
     </FormControl>

@@ -17,16 +17,6 @@ function TextareaInput({
         value={value}
         onChange={handleChange}
         placeholder={placeholder}
-        rows={5}
-        bg="none"
-        borderColor="gray.300"
-        _focus={{
-          borderColor: "pink.500",
-          boxShadow: "none",
-          outline: "none",
-        }}
-        fontSize="md"
-        lineHeight="1.5"
       />
     </FormControl>
   );
